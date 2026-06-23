@@ -1,0 +1,37 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zubin Home Evaluation — client website in draft">
+  <defs>
+    <linearGradient id="zhe-bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10140f"/>
+      <stop offset="1" stop-color="#0b0e0c"/>
+    </linearGradient>
+    <pattern id="zhe-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#20281f" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#zhe-bg)"/>
+  <rect width="1200" height="800" fill="url(#zhe-grid)" opacity="0.6"/>
+
+  <g stroke="#7f7d72" stroke-width="2" stroke-linecap="round" opacity="0.6">
+    <path d="M48 48h28M48 48v28"/>
+    <path d="M1152 48h-28M1152 48v28"/>
+    <path d="M48 752h28M48 752v-28"/>
+    <path d="M1152 752h-28M1152 752v-28"/>
+  </g>
+
+  <text x="80" y="118" font-family="ui-monospace, Menlo, monospace" font-size="22" letter-spacing="6" fill="#7f7d72">CLIENT // WEB</text>
+  <text x="1120" y="118" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="22" letter-spacing="4" fill="#b8b2a3">STATUS: DRAFT</text>
+
+  <!-- house / roofline motif -->
+  <g transform="translate(885 300)" stroke="#8fac7e" stroke-width="2.5" fill="none" opacity="0.85" stroke-linejoin="round">
+    <path d="M-78 6 0 -64 78 6"/>
+    <path d="M-58 -8V70H58V-8"/>
+    <path d="M-14 70V28H20V70"/>
+  </g>
+
+  <text x="80" y="520" font-family="Georgia, 'Times New Roman', serif" font-size="86" font-weight="600" fill="#ece6d8">Zubin Home Evaluation</text>
+  <text x="82" y="580" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" fill="#b8b2a3">Client website · awaiting verified live URL</text>
+
+  <line x1="80" y1="640" x2="1120" y2="640" stroke="#2a342c" stroke-width="1"/>
+  <text x="80" y="686" font-family="ui-monospace, Menlo, monospace" font-size="20" letter-spacing="3" fill="#7f7d72">ASTRO · STATIC SITE</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Patrick Hourihan — Software Developer Building AI-Enabled Products">
+  <defs>
+    <linearGradient id="og-bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#11160f"/>
+      <stop offset="1" stop-color="#0b0e0b"/>
+    </linearGradient>
+    <radialGradient id="og-glow" cx="0" cy="0" r="1" gradientTransform="translate(980 140) rotate(130) scale(520)">
+      <stop stop-color="#d96a33" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#d96a33" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="og-grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#20281f" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#og-bg)"/>
+  <rect width="1200" height="630" fill="url(#og-grid)" opacity="0.5"/>
+  <rect width="1200" height="630" fill="url(#og-glow)"/>
+
+  <g stroke="#d96a33" stroke-width="2" stroke-linecap="round" opacity="0.7">
+    <path d="M56 56h30M56 56v30"/>
+    <path d="M1144 56h-30M1144 56v30"/>
+    <path d="M56 574h30M56 574v-30"/>
+    <path d="M1144 574h-30M1144 574v-30"/>
+  </g>
+
+  <text x="80" y="130" font-family="ui-monospace, Menlo, monospace" font-size="22" letter-spacing="6" fill="#ec8b56">PORTFOLIO · FIELD MANUAL · REV 2026.06</text>
+
+  <text x="78" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-weight="600" fill="#ece6d8">Patrick Hourihan</text>
+  <text x="80" y="372" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#b8b2a3">Software Developer Building AI-Enabled Products</text>
+
+  <line x1="80" y1="470" x2="1120" y2="470" stroke="#2a342c" stroke-width="1"/>
+  <text x="80" y="522" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" fill="#b8b2a3">TypeScript · Next.js · Supabase · SQL · APIs · AI workflows</text>
+  <text x="80" y="566" font-family="ui-monospace, Menlo, monospace" font-size="20" letter-spacing="3" fill="#7f7d72">WESTERN MASSACHUSETTS · 42.2751° N, 72.4009° W</text>
+</svg>
