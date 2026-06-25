@@ -13,36 +13,38 @@
 
 export type ProjectStatus =
   | "Live in production"
-  | "In development"
-  | "In development — working prototype"
-  | "Draft — awaiting verified URL";
+  | "Live interactive prototype"
+  | "In development";
 
 export interface Project {
   /** Stable id, also used for the anchor + image filename. */
   id: string;
   name: string;
-  /** One-sentence description. */
+  /** One-sentence, plain-English description (visible). */
   summary: string;
-  /** The problem the product addresses. */
-  problem: string;
-  /** What Patrick built (AI-assisted). */
-  built: string;
-  /** Verified technology stack — short tags. */
+  /** Verified technology stack, short tags (visible). */
   stack: string[];
-  /** Key technical implementation details (case-study bullets). */
+  /** Two or three concise "what I built" bullets (visible). */
+  build: string[];
+  /** The problem the product addresses (case study). */
+  problem: string;
+  /** Deeper technical implementation details (case study). */
   implementation: string[];
-  /** How AI-assisted development was used. */
-  aiUse: string;
-  /** What Patrick personally decided, reviewed, tested, or debugged. */
-  ownership: string;
+  /** Short, varied note on how Patrick worked and what he owned (case study). */
+  approach: string;
+  /** Honest current limitations (case study, optional). */
+  limitations?: string[];
   status: ProjectStatus;
-  /** Live site — only when verified (HTTP 200). */
+  /** Live site, only when verified (HTTP 200). */
   liveUrl?: string;
-  /** GitHub — only when the repo is public. */
+  /** GitHub, only when the repo is public. */
   githubUrl?: string;
-  /** Branded project image in /public/images/projects/. */
+  /** Primary project image in /public/images/projects/. */
   image: string;
   imageAlt: string;
+  /** Optional secondary/detail image shown inside the case study. */
+  detailImage?: string;
+  detailImageAlt?: string;
   /** If true, the project is omitted from the rendered site. */
   hidden?: boolean;
   /** Internal note explaining a hidden/gated entry. Not rendered. */
@@ -57,103 +59,111 @@ export const softwareProjects: Project[] = [
     id: "my-cartoon-pet",
     name: "My Cartoon Pet",
     summary:
-      "An AI-enabled SaaS where pet owners turn a single photo into a clean cartoon mascot, preview it on merch, and publish a public pet profile.",
-    problem:
-      "The hard part isn't generating an image — it's generating a consistent, on-brand cartoon a pet owner actually recognizes as their animal, while keeping uploads private and billing trustworthy.",
-    built:
-      "A full SaaS architecture: Supabase authentication, a Postgres schema protected by Row Level Security, private storage buckets, a secure upload authorize → commit flow, an image-generation route with atomic per-user quotas, and Stripe subscriptions with Checkout, a billing portal, and webhook-driven plan state.",
+      "AI-enabled pet design SaaS where users upload a pet photo, generate a cartoon mascot-style design, preview it on merchandise, and save results to a private gallery.",
     stack: [
-      "Next.js (App Router)",
+      "Next.js",
       "TypeScript",
-      "Supabase Auth",
+      "Supabase",
       "Postgres",
-      "Row Level Security",
-      "Supabase Storage",
+      "RLS",
+      "Private storage",
       "Stripe",
-      "Replicate (img2img)",
       "Vercel",
     ],
-    implementation: [
-      "Atomic Postgres quota enforcement via a stored procedure that counts pending + completed generations and never refunds failed ones, closing a credit-farming gap.",
-      "Signed-URL upload flow (authorize → commit) with per-user storage prefixes, so a user can only read and write objects under their own id.",
-      "Stripe webhook handler that verifies signatures and maps subscription status onto each profile's plan, driving access and generation limits.",
-      "Row Level Security policies on every user-owned table (uploads, generations, pet profiles), with public-read only for shared theme/tagline catalogs.",
+    build: [
+      "Built the upload, auth, generation, gallery, and billing architecture with Next.js, Supabase, Postgres, private storage, RLS, Stripe, and Vercel.",
+      "Implemented a secure upload flow with signed URLs, ownership checks, quota handling, and private result storage.",
+      "Used AI coding agents for implementation and debugging, then reviewed diffs, verified tests, and kept production gated until real generation QA passes.",
     ],
-    aiUse:
-      "Used Claude Code and OpenAI Codex to scaffold routes, write migrations, and assemble the generation pipeline from written specifications and acceptance criteria.",
-    ownership:
-      "Diagnosed a production-breaking mismatch after a schema migration dropped stored procedures the generation route still called; rewrote the generation route against the live schema, authored a write-hardening migration to close a quota-refund exploit, and reviewed every diff and security policy.",
+    problem:
+      "Generating any cartoon is easy. Generating a consistent, on-brand one a pet owner recognizes as their animal, with private uploads and trustworthy billing, is the hard part.",
+    implementation: [
+      "Three-step upload: authorize, a signed PUT to private storage, then a commit that verifies the stored file and enforces per-plan limits atomically in Postgres.",
+      "Server-only generation: an atomic quota-check-and-create function runs before any paid AI call. Failed generations are recorded without consuming quota.",
+      "Stripe Checkout and a billing portal, with a signature-verified webhook as the single source of truth for plan status.",
+      "Gallery results re-list with freshly signed URLs, so they outlive any single link.",
+    ],
+    approach:
+      "Mid-build I hit a real bug: the database had migrated to a new generation schema while the code still called functions that no longer existed. I traced it against the live database, realigned the API, and added tests that pin app constants to the migration. I also hardened the generations table to be server-write-only, closing a quota-refund hole.",
+    limitations: [
+      "Not publicly launched.",
+      "Real generation QA still needs Vercel environment variables and a Supabase migration.",
+      "No live link until the upload-to-result flow is verified.",
+    ],
     status: "In development",
-    // No live link: mycartoonpet.com does not resolve. No GitHub link: repo is private.
-    image: "/images/projects/my-cartoon-pet.svg",
+    // No live link: not publicly launched (preview is gated behind Vercel login).
+    // No GitHub link: repository is private (verified 2026-06-25).
+    image: "/images/projects/my-cartoon-pet.jpg",
     imageAlt:
-      "Branded field-report card for My Cartoon Pet, an AI pet-cartoon SaaS, marked in development.",
+      "Screenshot of the My Cartoon Pet marketing homepage: a serif hero reading “Your pet, as a cartoon character,” a “Make my pet's cartoon” call to action, and a photo-to-cartoon how-it-works panel.",
+    detailImage: "/images/projects/my-cartoon-pet-signin.jpg",
+    detailImageAlt:
+      "Screenshot of the My Cartoon Pet sign-in screen: a branded “Welcome back” card with email and password fields and a Sign in button. No real data is shown.",
   },
   {
     id: "iplayforkeepers",
     name: "IPlayForKeepers",
     summary:
-      "A mobile-first fantasy-football platform for dynasty leagues, best-ball formats, league history, and custom competition formats.",
-    problem:
-      "Casual fantasy apps don't serve serious dynasty and best-ball leagues that want deep history, real commissioner control, and custom formats — all on a phone-first interface.",
-    built:
-      "A working prototype: sixteen routable league screens — multi-league dashboard, scoreboard, best-ball optimizer, standings, rosters, player pool, FAAB waivers, trades, a slow-draft room, a future-pick ledger, a commissioner center, a custom-format lab, and league chat — driven by a deterministic seeded data engine standing in for the planned backend.",
+      "Live mobile-first fantasy football prototype for dynasty, keeper, superflex, and best-ball leagues.",
     stack: [
-      "Next.js (App Router)",
-      "React",
+      "Next.js",
       "TypeScript",
       "Tailwind CSS",
       "OpenNext",
       "Cloudflare Workers",
     ],
-    implementation: [
-      "A real best-ball lineup optimizer that auto-selects the highest-scoring legal lineup each week, rather than a static mock.",
-      "A deterministic, seeded data engine (375 players, full schedule and derived standings) so every demo renders identically and reproducibly.",
-      "TypeScript types that mirror the planned Supabase schema, so the mock engine can later be swapped for a live backend with minimal churn.",
-      "A successful Cloudflare Workers build via OpenNext and Wrangler, with the deployment pipeline configured.",
+    build: [
+      "Built a sixteen-screen demo league with dashboards, standings, rosters, waivers, trades, draft state, chat, and future-pick tracking.",
+      "Added deterministic seeded data so the demo renders the same way every time.",
+      "Implemented a real best-ball lineup optimizer that selects the highest-scoring legal lineup each week.",
     ],
-    aiUse:
-      "Scaffolded the multi-screen application and the seeded data engine with AI coding agents, working from a written product specification.",
-    ownership:
-      "Defined the product scope and league rules, structured the sixteen screens and mobile navigation, validated the best-ball optimizer's output, and confirmed a clean Cloudflare build.",
-    status: "In development — working prototype",
-    // No live link: iplayforkeepers.com does not resolve. No GitHub link: repo is private.
-    image: "/images/projects/iplayforkeepers.svg",
+    problem:
+      "Casual fantasy apps don't serve serious dynasty and best-ball leagues that want deep history, real commissioner control, and custom formats on a phone.",
+    implementation: [
+      "A seeded engine with fictional players, a full schedule, and derived standings, for reproducible demos.",
+      "Types mirror a planned backend schema, so the mock layer can later be swapped for live data with minimal churn.",
+      "Ships to Cloudflare Workers via OpenNext and Wrangler.",
+    ],
+    approach:
+      "I scoped the product and league rules, structured the sixteen screens and mobile navigation, checked the optimizer's output by hand, and shipped the live prototype.",
+    limitations: [
+      "Fictional seeded data only.",
+      "No production auth, payments, MFL import, live scoring, or real leagues yet.",
+      "Prototype, not a finished fantasy hosting service.",
+    ],
+    status: "Live interactive prototype",
+    liveUrl: "https://iplayforkeepers.com",
+    githubUrl: "https://github.com/hikewithcats/iplayforkeepers",
+    image: "/images/projects/iplayforkeepers.jpg",
     imageAlt:
-      "Branded field-report card for IPlayForKeepers, a dynasty fantasy-football platform, marked as a working prototype.",
+      "Screenshot of the live IPlayForKeepers site: a dark fantasy-football landing page reading “Fantasy football hosting for leagues that play for keeps,” with a phone mockup of the app.",
   },
   {
     id: "keeping-up-with-the-robots",
     name: "Keeping Up With The Robots",
     summary:
-      "A live Western Massachusetts AI newsletter and community site that signs up subscribers and routes contact messages from day one.",
+      "Live community website for Western Massachusetts people and small businesses learning how to use AI.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Resend", "Vercel"],
+    build: [
+      "Built and deployed a responsive Next.js site with newsletter signup and contact handling.",
+      "Integrated Resend through API routes with safe fallback behavior.",
+      "Wrote and refined the positioning, structure, and launch copy.",
+    ],
     problem:
-      "Small-business owners and creators in the Pioneer Valley want practical, no-hype guidance on AI — and a local community to learn it with.",
-    built:
-      "A production, responsive marketing site with newsletter signup and contact handling powered by Resend, served through REST-style Next.js API routes and deployed on Vercel.",
-    stack: [
-      "Next.js (App Router)",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Resend",
-      "Vercel",
-    ],
+      "Small businesses and creators in the Pioneer Valley want practical, no-hype guidance on AI, and a local community to learn it with.",
     implementation: [
-      "A /api/subscribe route that adds contacts to a Resend audience and falls back to a welcome email when no audience is configured.",
-      "A /api/contact route that delivers form submissions through Resend, with a development fallback that logs safely when API keys are absent.",
-      "A responsive, custom dark theme built on Tailwind CSS v4 with mobile navigation and accessible forms.",
+      "/api/subscribe adds contacts to a Resend audience, with a welcome-email fallback.",
+      "/api/contact delivers submissions through Resend, and logs safely in dev when keys are absent.",
+      "Custom dark theme on Tailwind CSS v4, responsive with mobile navigation.",
     ],
-    aiUse:
-      "Built with AI coding agents against a written project spec; brand copy and structure were drafted, reviewed, and refined by Patrick.",
-    ownership:
-      "Owned the brand and positioning, wrote and approved the copy, integrated Resend for both flows, and deployed the site to a live domain on Vercel.",
+    approach:
+      "This one is more brand than backend. I owned the positioning and copy, wired up Resend, and deployed it live on Vercel.",
     status: "Live in production",
     liveUrl: "https://keepingupwiththerobots.com",
     githubUrl: "https://github.com/hikewithcats/keeping-up-with-the-robots",
-    image: "/images/projects/keeping-up-with-the-robots.svg",
+    image: "/images/projects/keeping-up-with-the-robots.jpg",
     imageAlt:
-      "Branded field-report card for Keeping Up With The Robots, a live Western Massachusetts AI newsletter, marked live in production.",
+      "Screenshot of the live Keeping Up With The Robots site: a dark hero reading “AI is moving fast. Western Mass is keeping up,” with a newsletter signup and a Western Massachusetts signal-grid map.",
   },
 ];
 
@@ -164,7 +174,7 @@ export interface ClientProject {
   id: string;
   name: string;
   summary: string;
-  /** Patrick's role — web development scope only. */
+  /** Patrick's role - web development scope only. */
   role: string[];
   /** Explicit boundary on what Patrick did NOT provide. */
   boundary?: string;
@@ -185,42 +195,43 @@ export const clientProjects: ClientProject[] = [
       "A responsive marketing website for a science-backed peptide-therapy wellness brand.",
     role: [
       "Requirements gathering and information architecture",
-      "Responsive website development (Next.js, Tailwind CSS)",
-      "Implementation of approved brand copy",
+      "Responsive website implementation (Next.js, Tailwind CSS)",
+      "Approved-copy integration",
       "Consultation form and platform integration",
+      "QA",
       "Deployment coordination",
-      "AI-assisted development workflow throughout",
     ],
     boundary:
-      "Patrick's role was web development only — no medical, clinical, or regulatory advice. The consultation form is handled by an embedded third-party provider, and the site intentionally avoids collecting medical history.",
+      "My role was limited to requirements, site structure, responsive implementation, QA, and deployment coordination. Medical and regulatory content came from the client.",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Embedded form (Tally)"],
     status: "Live in production",
     liveUrl: "https://www.cellbeautyhealth.com",
-    image: "/images/projects/cell-beauty-health.svg",
+    image: "/images/projects/cell-beauty-health.jpg",
     imageAlt:
-      "Branded field-report card for Cell Beauty Health, a live client marketing website.",
+      "Screenshot of the live Cell Beauty Health website: an elegant dark hero with the Cell Beauty Health logo over a cellular background and a “Book Your Free Consultation” call to action.",
   },
   {
-    id: "zubin-home-evaluation",
-    name: "Zubin Home Evaluation",
+    id: "zubin-home-valuation",
+    name: "Zubin Home Valuation",
     summary:
-      "A client marketing website for a residential home-evaluation business.",
+      "A responsive marketing website for a residential appraisal and home-valuation business serving Buffalo and Western New York.",
     role: [
       "Requirements gathering and information architecture",
-      "Responsive static website development",
+      "Responsive website development",
       "Implementation of approved copy",
+      "QA",
       "Deployment coordination",
     ],
+    boundary:
+      "My role was limited to site structure, responsive implementation, QA, and deployment coordination. Appraisal credentials, service details, and business claims came from the client.",
     stack: ["Astro", "Static site"],
-    status: "Draft — awaiting verified URL",
-    image: "/images/projects/zubin-home-evaluation.svg",
+    status: "Live in production",
+    liveUrl: "https://zubinhomevaluation.com",
+    // No source link - client repository is not public, and source is not advertised.
+    image: "/images/projects/zubin-home-valuation.jpg",
     imageAlt:
-      "Branded field-report card for Zubin Home Evaluation, a client website in draft.",
-    // Hidden from the public site until a verified live URL and final details are supplied.
-    // The data structure exists so the card can be enabled by setting `hidden` to false
-    // and adding `liveUrl` once the site launches and clears its pre-launch checklist.
-    hidden: true,
-    note: "Pre-launch. Astro build is complete but unlaunched, with outstanding licensing/compliance checklist items and no verified production URL. Keep hidden until Patrick confirms a live URL.",
+      "Screenshot of the live Zubin Home Valuation website: a professional hero reading “Residential Appraisals and Home Valuation Services in Buffalo & Western New York” with call-to-action buttons.",
+    // Verified live (HTTP 200, real content) on 2026-06-25, so shown publicly.
   },
 ];
 

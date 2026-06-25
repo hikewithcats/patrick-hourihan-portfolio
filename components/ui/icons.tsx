@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-/* Inline icons — no icon-library dependency. All decorative unless labelled. */
+/* Inline icons - no icon-library dependency. All decorative unless labelled. */
 
 export function GitHubIcon(props: SVGProps<SVGSVGElement>) {
   return (

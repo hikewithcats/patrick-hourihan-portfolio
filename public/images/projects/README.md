@@ -7,27 +7,28 @@ project and client-work cards.
 
 | File | Project | Type |
 | --- | --- | --- |
-| `my-cartoon-pet.svg` | My Cartoon Pet | Branded treatment |
-| `iplayforkeepers.svg` | IPlayForKeepers | Branded treatment |
-| `keeping-up-with-the-robots.svg` | Keeping Up With The Robots | Branded treatment |
-| `cell-beauty-health.svg` | Cell Beauty Health | Branded treatment |
-| `zubin-home-evaluation.svg` | Zubin Home Evaluation (hidden) | Branded treatment |
+| `my-cartoon-pet.jpg` | My Cartoon Pet | Real screenshot - marketing homepage (1280×800) |
+| `my-cartoon-pet-signin.jpg` | My Cartoon Pet | Real screenshot - sign-in (case-study detail, 1280×800) |
+| `iplayforkeepers.jpg` | IPlayForKeepers | Real screenshot (1280×800) |
+| `keeping-up-with-the-robots.jpg` | Keeping Up With The Robots | Real screenshot (1280×800) |
+| `cell-beauty-health.jpg` | Cell Beauty Health | Real screenshot (1280×800) |
+| `zubin-home-valuation.jpg` | Zubin Home Valuation | Real screenshot (1280×800) |
 
-These are intentional, designed placeholders — **not** empty "preview pending"
-boxes and **not** invented UI screenshots. Each encodes the project's name,
-status, stack, and a small motif in the site's dark editorial system.
+Every project uses real desktop screenshots, saved as optimized JPEGs. The four
+live sites were captured from production; My Cartoon Pet's were captured from a
+local production build of the verified branch (marketing homepage + sign-in
+only - the authenticated app screens are intentionally not shown, since no real
+generation has been run).
 
-## Swapping in real screenshots
+## Refreshing a screenshot
 
-For the two **live** projects (Keeping Up With The Robots, Cell Beauty Health)
-a real desktop screenshot will read as more credible. To swap one in:
+1. Capture a clean desktop screenshot (1440×900) of the production site.
+2. Downscale to 1280 px wide and save as an optimized JPEG (target < 250 KB),
+   e.g. `sips -Z 1280 in.png --setProperty format jpeg --setProperty formatOptions 82 --out out.jpg`.
+3. Save it here, then confirm the `image` (and `imageAlt`) fields in
+   [`lib/projects.ts`](../../../lib/projects.ts) point at it.
 
-1. Capture a clean desktop screenshot (≈1200×800, 3:2). Crop consistently.
-2. Optimize it (e.g. export a compressed `.webp` or `.png`, target < 250 KB).
-3. Save it here, then update the `image` (and `imageAlt`) field for that
-   project in [`lib/projects.ts`](../../../lib/projects.ts).
-
-Do **not** hotlink screenshots from external sites — always store a local,
+Do **not** hotlink screenshots from external sites - always store a local,
 optimized asset. Keep `imageAlt` descriptive.
 
 ## Why SVG

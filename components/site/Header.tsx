@@ -27,7 +27,7 @@ export default function Header() {
         <a
           href="#main"
           className="group flex items-center gap-2.5"
-          aria-label={`${siteConfig.name} — back to top`}
+          aria-label={`${siteConfig.name}, back to top`}
         >
           <span
             aria-hidden="true"

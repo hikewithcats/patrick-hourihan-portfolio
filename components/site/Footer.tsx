@@ -12,6 +12,18 @@ export default function Footer() {
             <p className="mt-3 font-mono text-xs text-cream-faint">
               {siteConfig.location} · {siteConfig.coordinates}
             </p>
+            <p className="mt-4 max-w-xs text-xs text-cream-faint">
+              <a
+                href={siteConfig.links.hikeWithCats}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cream-dim underline decoration-line underline-offset-2 transition-colors hover:text-cream"
+              >
+                Hike With Cats
+              </a>
+              : adventure-cat media and merchandise site built and maintained on
+              WordPress/SiteGround.
+            </p>
           </div>
 
           <nav aria-label="Footer" className="flex flex-col gap-3 sm:items-end">
@@ -30,7 +42,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-cream-dim transition-colors hover:text-cream"
             >
-              PoundKeeper.com — personal & creative
+              PoundKeeper.com (personal &amp; creative)
               <ArrowUpRight className="h-3 w-3 text-cream-faint" />
             </a>
             <a
@@ -45,7 +57,7 @@ export default function Footer() {
         <div className="rule mt-10" />
         <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-xs text-cream-faint">
-            © {new Date().getFullYear()} Patrick Hourihan — End of field report.
+            © {new Date().getFullYear()} Patrick Hourihan. End of field report.
           </p>
           <p className="font-mono text-xs text-cream-faint">
             Built with Next.js · Static export · Cloudflare Pages

@@ -1,30 +1,32 @@
 # Résumé
 
-The "Download Résumé" button on the site links to:
+The "Download Résumé" button links to:
 
 ```
 public/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf
 ```
 
-**This PDF is intentionally not committed yet.**
+This PDF **is committed** and the button is **enabled** (`resume.available: true`
+in [`lib/site.ts`](../../lib/site.ts)). It is a one-page, selectable-text PDF
+tailored for a Junior Software Developer (AI-focused) application.
 
-Until the real file exists, the button is rendered in a clearly **disabled**
-state (marked "soon") rather than as a broken link. This behavior is controlled
-by a single flag in [`lib/site.ts`](../../lib/site.ts):
+## Regenerating the PDF
 
-```ts
-resume: {
-  available: false, // ← set to true once the PDF below exists
-  path: "/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf",
-  ...
-}
+The PDF is rendered from [`resume/resume.html`](../../resume/resume.html) (the
+print source), with [`resume/Patrick_Hourihan_FIT_AI_Junior_Developer_Resume.md`](../../resume/Patrick_Hourihan_FIT_AI_Junior_Developer_Resume.md)
+as the human-readable source of record. To regenerate after editing the HTML:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --no-pdf-header-footer \
+  --print-to-pdf="public/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf" \
+  "file://$PWD/resume/resume.html"
 ```
 
-## To enable the résumé download
+This uses headless Chrome (no extra dependencies) and produces searchable text,
+not a screenshot. Keep the output to one page; tighten the HTML/CSS rather than
+spilling to a second page.
 
-1. Drop the final PDF into this folder using exactly this filename:
-   `Patrick_Hourihan_AI_Junior_Developer_Resume.pdf`
-2. Set `resume.available` to `true` in `lib/site.ts`.
-3. Rebuild. The button becomes an active download link automatically.
+## To disable the button again
 
-Keep the filename in sync between the actual file and `lib/site.ts`.
+Set `resume.available` to `false` in `lib/site.ts`.

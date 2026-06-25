@@ -15,7 +15,7 @@ export default function AiWorkflow() {
           index="04"
           label="How I Build With AI"
           title="AI does the typing. I own the judgment."
-          intro="A repeatable process I run on every project — the same one that found and fixed real bugs in the work above."
+          intro="A repeatable process I run on every project. It is the same one that found and fixed real bugs in the work above."
         />
 
         <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -43,7 +43,7 @@ export default function AiWorkflow() {
           </p>
           <p className="mt-3 text-sm text-cream-dim">
             Prompting is not the skill. Defining the problem, validating what the
-            agent produced, and standing behind the result — that is the work.
+            agent produced, and standing behind the result. That is the work.
           </p>
         </Reveal>
       </div>

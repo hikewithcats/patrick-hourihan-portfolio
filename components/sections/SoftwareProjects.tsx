@@ -17,7 +17,7 @@ export default function SoftwareProjects() {
           index="01"
           label="Selected Software Projects"
           title="Products I've defined, built, and debugged"
-          intro="Three projects, in different stages of the same craft: turning a real problem into a written spec, building it with AI agents, then reviewing, testing, and owning the result."
+          intro="Three projects at different stages of the same craft: define the problem, build it, then review, test, and own the result."
         />
 
         <div className="mt-16 space-y-20 lg:space-y-28">
@@ -56,19 +56,14 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
 
       {/* Copy */}
       <Reveal delay={80} className={flip ? "lg:order-1" : ""}>
-        <div className="flex flex-wrap items-center gap-3">
+        {/* 1. Name  2. Status  3. One-sentence description */}
+        <h3 className="text-3xl sm:text-4xl">{project.name}</h3>
+        <div className="mt-3">
           <StatusPill status={project.status} />
         </div>
+        <p className="mt-4 text-lg text-cream-dim">{project.summary}</p>
 
-        <h3 className="mt-4 text-3xl sm:text-4xl">{project.name}</h3>
-        <p className="mt-3 text-lg text-cream-dim">{project.summary}</p>
-
-        <dl className="mt-6 space-y-4">
-          <Field label="Problem" body={project.problem} />
-          <Field label="What I built" body={project.built} />
-        </dl>
-
-        {/* Stack */}
+        {/* 4. Stack */}
         <div className="mt-6">
           <span className="label">Stack</span>
           <ul className="mt-2.5 flex flex-wrap gap-1.5">
@@ -83,32 +78,20 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
           </ul>
         </div>
 
-        {/* Case study */}
-        <details className="group mt-6 rounded-lg border border-line bg-surface/50">
-          <summary className="flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-cream">
-            <span className="flex items-center gap-2">
-              <ChevronRight className="case-chevron h-4 w-4 text-ember-soft" />
-              Case study — implementation, AI, and what I owned
-            </span>
-          </summary>
-          <div className="space-y-5 border-t border-line px-4 py-5">
-            <div>
-              <span className="label label-moss">Key implementation</span>
-              <ul className="mt-2.5 space-y-2">
-                {project.implementation.map((point, idx) => (
-                  <li key={idx} className="flex gap-2.5 text-sm text-cream-dim">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-ember-soft" aria-hidden="true" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <Field label="AI-assisted development" body={project.aiUse} />
-            <Field label="What I decided, reviewed & debugged" body={project.ownership} />
-          </div>
-        </details>
+        {/* 5. What I built */}
+        <div className="mt-6">
+          <span className="label">What I built</span>
+          <ul className="mt-2.5 space-y-2">
+            {project.build.map((point, idx) => (
+              <li key={idx} className="flex gap-2.5 text-cream-dim">
+                <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-ember-soft" aria-hidden="true" />
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        {/* Links */}
+        {/* 6. Links */}
         {(project.liveUrl || project.githubUrl) && (
           <div className="mt-6 flex flex-wrap gap-3">
             {project.liveUrl && (
@@ -135,6 +118,61 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
             )}
           </div>
         )}
+
+        {/* 7. Collapsed case study */}
+        <details className="group mt-6 rounded-lg border border-line bg-surface/50">
+          <summary className="flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-cream">
+            <span className="flex items-center gap-2">
+              <ChevronRight className="case-chevron h-4 w-4 text-ember-soft" />
+              Case study: build notes and ownership
+            </span>
+          </summary>
+          <div className="space-y-5 border-t border-line px-4 py-5">
+            <Field label="Problem" body={project.problem} />
+            <div>
+              <span className="label label-moss">Under the hood</span>
+              <ul className="mt-2.5 space-y-2">
+                {project.implementation.map((point, idx) => (
+                  <li key={idx} className="flex gap-2.5 text-sm text-cream-dim">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-ember-soft" aria-hidden="true" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Field label="How I worked" body={project.approach} />
+            {project.limitations && project.limitations.length > 0 && (
+              <div>
+                <span className="label">Current limitations</span>
+                <ul className="mt-2.5 space-y-2">
+                  {project.limitations.map((point, idx) => (
+                    <li key={idx} className="flex gap-2.5 text-sm text-cream-dim">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-cream-faint" aria-hidden="true" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {project.detailImage && (
+              <figure>
+                <span className="label">Detail</span>
+                <div className="mt-2.5 overflow-hidden rounded-lg border border-line bg-surface">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={project.detailImage}
+                    alt={project.detailImageAlt ?? ""}
+                    width={1280}
+                    height={800}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[16/10] w-full object-cover object-center"
+                  />
+                </div>
+              </figure>
+            )}
+          </div>
+        </details>
       </Reveal>
     </article>
   );

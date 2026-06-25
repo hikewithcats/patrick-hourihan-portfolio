@@ -9,7 +9,7 @@ import { useEffect, useRef, type ElementType, type ReactNode } from "react";
  * `data-shown` when it scrolls into view; the CSS in globals.css only applies
  * the hidden-then-revealed transition when JS is present AND the visitor has
  * not requested reduced motion. If JS fails or motion is reduced, the content
- * is fully visible — nothing here is required to read the page.
+ * is fully visible - nothing here is required to read the page.
  */
 export default function Reveal({
   children,

@@ -78,7 +78,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
           >
-            Personal site — PoundKeeper.com
+            Personal site: PoundKeeper.com
             <ArrowUpRight className="h-3.5 w-3.5 text-cream-faint" />
           </a>
         </Reveal>

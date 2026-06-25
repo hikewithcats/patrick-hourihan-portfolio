@@ -18,7 +18,7 @@ export default function Hero() {
       className="relative overflow-hidden border-b border-line"
     >
       <div className="mx-auto grid max-w-6xl gap-12 px-[var(--spacing-gutter)] pb-20 pt-16 sm:pt-24 lg:grid-cols-[1.55fr_1fr] lg:items-center lg:gap-16 lg:pb-28">
-        {/* Left — the statement */}
+        {/* Left - the statement */}
         <div>
           <Reveal className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <span className="label label-ember">{siteConfig.role.toUpperCase()}</span>
@@ -41,7 +41,7 @@ export default function Hero() {
             className="mt-5 max-w-2xl font-display text-2xl text-cream-dim sm:text-3xl"
           >
             Software developer building{" "}
-            <span className="text-cream">AI-enabled products</span> — practical
+            <span className="text-cream">AI-enabled products</span>. Practical
             tools, real websites, and shipped software.
           </Reveal>
 
@@ -57,7 +57,7 @@ export default function Hero() {
             className="mt-4 max-w-2xl border-l-2 border-moss-dim/60 pl-4 text-sm text-cream-dim"
           >
             More than seven years of client-facing sales and account-management
-            experience brought to software development — alongside hands-on work
+            experience brought to software development, alongside hands-on work
             defining, building, debugging, and deploying real products.
           </Reveal>
 
@@ -110,7 +110,7 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        {/* Right — field-notes panel */}
+        {/* Right - field-notes panel */}
         <Reveal
           delay={200}
           className="relative hidden lg:block"

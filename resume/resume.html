@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Patrick Hourihan Resume</title>
+<style>
+  @page { size: letter; margin: 0.38in 0.5in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, "Helvetica Neue", sans-serif;
+    font-size: 9pt;
+    line-height: 1.11;
+    color: #161616;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  a { color: #15402f; text-decoration: none; }
+
+  header { margin-bottom: 3px; }
+  .name { font-size: 18pt; font-weight: 700; letter-spacing: 0.2px; color: #11150f; }
+  .contact { font-size: 8.6pt; color: #333; margin-top: 2px; }
+  .contact span { white-space: nowrap; }
+  .sep { color: #999; padding: 0 5px; }
+
+  h2 {
+    font-size: 9.6pt;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #15402f;
+    border-bottom: 1.1px solid #15402f;
+    padding-bottom: 1.5px;
+    margin: 6px 0 4px;
+  }
+
+  .summary { margin: 2px 0 0; text-align: justify; }
+
+  .entry { margin-bottom: 3px; }
+  .entry:last-child { margin-bottom: 0; }
+  .roleline { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .role { font-weight: 700; font-size: 9.3pt; color: #11150f; }
+  .role .meta { font-weight: 400; color: #3a3a3a; }
+  .dates { font-size: 8.3pt; color: #555; white-space: nowrap; }
+
+  ul { margin: 1px 0 0; padding-left: 14px; }
+  li { margin: 1px 0; }
+
+  .skills p { margin: 2.5px 0; }
+  .skills b { color: #11150f; }
+
+  .edu p { margin: 1px 0; }
+  .edu .deg { font-weight: 700; color: #11150f; }
+  .community { margin: 2px 0 0; }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="name">Patrick Hourihan</div>
+    <div class="contact">
+      <span>Western Massachusetts</span><span class="sep">|</span><span>(716) 515-5734</span><span class="sep">|</span><span>patrickmhourihan@gmail.com</span>
+      <br />
+      <span>PatrickHourihan.com</span><span class="sep">|</span><span>github.com/hikewithcats</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Professional Summary</h2>
+    <p class="summary">
+      AI-assisted software builder in Western Massachusetts with hands-on experience building and deploying web
+      applications, AI-enabled products, client websites, and interactive prototypes using TypeScript, Next.js,
+      Supabase/Postgres, SQL, APIs, Stripe, Git/GitHub, Vercel, and Cloudflare. Brings 7+ years of client-facing sales and
+      territory-management experience, with a track record of explaining complex products, managing stakeholders, and
+      following through in real-world business environments.
+    </p>
+  </section>
+
+  <section>
+    <h2>Technical Projects</h2>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">My Cartoon Pet <span class="meta">| AI-enabled SaaS in development</span></span></div>
+      <ul>
+        <li>AI-enabled pet design SaaS: users upload a pet photo, generate cartoon mascot-style artwork, preview merchandise, and save results to a private gallery.</li>
+        <li>Built the architecture with Next.js App Router, TypeScript, Supabase Auth, Postgres, private storage, Row Level Security, Stripe (Checkout, billing portal, webhooks), and Vercel.</li>
+        <li>Implemented a secure upload and generation flow: signed URLs, ownership checks, quota handling, private result storage, gallery persistence, and production-gated QA.</li>
+        <li>Drove AI coding agents for planning, implementation, debugging, repository audits, tests, and documentation while personally reviewing diffs, build output, and release blockers.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">IPlayForKeepers <span class="meta">| Live interactive fantasy football prototype</span></span></div>
+      <ul>
+        <li>Built and deployed a mobile-first fantasy football prototype for dynasty, keeper, superflex, and best-ball leagues using Next.js, TypeScript, Tailwind CSS, and Cloudflare.</li>
+        <li>Created a sixteen-screen demo league with dashboards, standings, rosters, waivers, trades, future-pick tracking, draft state, chat, and commissioner-oriented workflows.</li>
+        <li>Implemented deterministic seeded data and a real best-ball lineup optimizer that selects the highest-scoring legal lineup each week.</li>
+        <li>Documented prototype limitations clearly: fictional data, no real leagues, no live scoring ingestion, no production authentication, and no completed MFL integration.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">Keeping Up With The Robots <span class="meta">| Production AI community website</span></span></div>
+      <ul>
+        <li>Built and deployed a responsive Next.js, TypeScript, and Tailwind website for a Western Massachusetts AI community.</li>
+        <li>Integrated newsletter signup and contact handling through Resend and Next.js API routes with safe fallback behavior.</li>
+        <li>Wrote and refined site positioning, structure, copy, and launch flow for small business owners and local AI builders.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">Selected Client Website Development <span class="meta">| Cell Beauty Health and Zubin Home Valuation</span></span></div>
+      <ul>
+        <li>Delivered production client websites through requirements gathering, information architecture, responsive implementation, QA, and deployment coordination.</li>
+        <li>Built with modern frontend workflows and AI-assisted implementation, keeping client-provided medical, appraisal, service, and credential content separate from my development role.</li>
+        <li>Worked directly with nontechnical business owners to turn business needs into clear, deployed websites.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="skills">
+    <h2>Technical Skills</h2>
+    <p><b>Languages &amp; Frontend:</b> TypeScript, JavaScript, HTML, CSS, React, Next.js, Tailwind CSS, responsive design</p>
+    <p><b>Data &amp; Backend:</b> Supabase, Postgres, SQL, authentication, private storage, Row Level Security</p>
+    <p><b>APIs &amp; Integrations:</b> REST APIs, Next.js API routes, webhooks, Stripe, Resend</p>
+    <p><b>Tools &amp; Deployment:</b> Git, GitHub, Vercel, Cloudflare, SiteGround, WordPress, WooCommerce</p>
+    <p><b>AI Workflow:</b> Claude Code, OpenAI Codex, ChatGPT, specification writing, debugging, repository audits, QA planning, documentation</p>
+  </section>
+
+  <section>
+    <h2>Professional Experience</h2>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">Energy Consultant <span class="meta">| Trinity Solar</span></span></div>
+      <ul>
+        <li>Consult with homeowners on solar projects, utility usage, financing options, and project tradeoffs.</li>
+        <li>Translate technical and financial details into plain-English recommendations for nontechnical customers.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">Territory Manager <span class="meta">| MicroSurgical Technology</span></span><span class="dates">May 2018 to Nov 2020</span></div>
+      <ul>
+        <li>Managed sales and service for 150+ ophthalmic surgical facilities across Florida.</li>
+        <li>Achieved 13% year-over-year growth in the first year and 10% year-over-year growth in the second year.</li>
+        <li>Trained surgical teams and built relationships with surgeons, hospital administrators, and clinical stakeholders.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">Outside Sales Representative <span class="meta">| W.B. Mason</span></span><span class="dates">Nov 2013 to Apr 2018</span></div>
+      <ul>
+        <li>Opened new markets in Buffalo and Miami, generating $1M+ in annual revenue within 12 months.</li>
+        <li>Managed 400+ B2B accounts across prospecting, pricing, contract negotiation, and retention.</li>
+        <li>Led branch-level new account growth through consistent field prospecting and customer follow-through.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="roleline"><span class="role">Pound Keeper / Animal Care <span class="meta">| Belchertown Animal Control</span></span></div>
+      <ul>
+        <li>Support daily animal care, intake, records, volunteer coordination, and community-facing service.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="edu">
+    <h2>Education</h2>
+    <p class="deg">Bachelor of Science in Business Administration</p>
+    <p>University at Buffalo, SUNY, School of Management</p>
+    <p>Concentration: Financial Analysis</p>
+  </section>
+
+  <section>
+    <h2>Community Involvement</h2>
+    <p class="community">Dakin Humane Society volunteer and BARC board member.</p>
+  </section>
+
+</body>
+</html>

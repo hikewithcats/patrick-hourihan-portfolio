@@ -1,7 +1,7 @@
 # Deploying to Cloudflare Pages
 
 This portfolio is a **static export**. `next build` produces a fully static
-site in `out/` — plain HTML, CSS, JS, fonts, and images with no server runtime,
+site in `out/` - plain HTML, CSS, JS, fonts, and images with no server runtime,
 database, or environment dependencies. That makes Cloudflare Pages a clean fit:
 Cloudflare serves the `out/` directory directly from its edge.
 
@@ -13,7 +13,7 @@ Cloudflare serves the `out/` directory directly from its edge.
 ## Why it's static-export compatible
 
 - `next.config.ts` sets `output: "export"`, so the build emits static files.
-- `images.unoptimized: true` — there is no image optimization server; all
+- `images.unoptimized: true` - there is no image optimization server; all
   imagery is pre-optimized SVG.
 - No API routes, no server actions, no `getServerSideProps`, no database, no
   auth. The contact action is a `mailto:` link. Fonts are self-hosted by
@@ -27,7 +27,7 @@ When creating the Pages project (or in **Settings → Builds & deployments**):
 
 | Setting | Value |
 | --- | --- |
-| Framework preset | **Next.js (Static HTML Export)** — or "None" |
+| Framework preset | **Next.js (Static HTML Export)** - or "None" |
 | Build command | `npm run build` |
 | Build output directory | `out` |
 | Root directory | `/` (repo root) |
@@ -36,7 +36,7 @@ When creating the Pages project (or in **Settings → Builds & deployments**):
 > If the preset injects a different build command, override it with
 > `npm run build`. The output directory **must** be `out`.
 
-## Option A — GitHub integration (recommended)
+## Option A - GitHub integration (recommended)
 
 1. Push this repo to GitHub (`hikewithcats/patrick-hourihan-portfolio`).
 2. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**.
@@ -46,7 +46,7 @@ When creating the Pages project (or in **Settings → Builds & deployments**):
    `*.pages.dev` preview URL. Every push to `main` redeploys; pull requests get
    preview deployments.
 
-## Option B — Direct upload (Wrangler)
+## Option B - Direct upload (Wrangler)
 
 If you prefer not to connect Git:
 
@@ -62,7 +62,7 @@ npx wrangler pages deploy out --project-name=patrick-hourihan-portfolio
 future feature needs one, add it under **Settings → Environment variables** for
 both Production and Preview, then read it at build time only.
 
-## Custom domain — PatrickHourihan.com and www
+## Custom domain - PatrickHourihan.com and www
 
 1. In the Pages project → **Custom domains → Set up a custom domain**.
 2. Add the apex: `patrickhourihan.com`.
@@ -81,7 +81,7 @@ Pick one host as canonical (the site's metadata uses the **apex**,
 **Bulk Redirect** or a `_redirects` file in `public/`:
 
 ```
-# public/_redirects  — force www → apex (301)
+# public/_redirects  - force www → apex (301)
 https://www.patrickhourihan.com/*  https://patrickhourihan.com/:splat  301
 ```
 
@@ -135,4 +135,4 @@ Cloudflare Pages keeps every deployment.
   publishes the reverted state.
 
 Because the site is static, a rollback is just re-pointing the alias at a prior
-immutable build — there is no database or migration state to unwind.
+immutable build - there is no database or migration state to unwind.

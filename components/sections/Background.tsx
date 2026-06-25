@@ -15,7 +15,7 @@ export default function Background() {
           index="05"
           label="Professional Background"
           title="A nontraditional path to software"
-          intro="Before software, I spent years in client-facing roles — explaining complex things to real people and following through on what I promised. That is most of the job."
+          intro="Before software, I spent years in roles where the job was to understand messy real-world problems, explain complex products clearly, and follow through with clients. That experience carries directly into how I build software: define the problem, write the spec, test the flow, and ship something useful."
         />
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
@@ -26,21 +26,31 @@ export default function Background() {
               {backgroundRoles.map((r) => (
                 <li
                   key={`${r.role}-${r.org}`}
-                  className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line py-4"
+                  className="border-b border-line py-4"
                 >
-                  <span className="font-display text-lg text-cream">{r.role}</span>
-                  <span className="text-sm text-cream-dim">{r.org}</span>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <span className="font-display text-lg text-cream">{r.role}</span>
+                    <span className="text-sm text-cream-dim">{r.org}</span>
+                  </div>
+                  {r.context && (
+                    <p className="mt-1.5 text-sm text-cream-faint">{r.context}</p>
+                  )}
                 </li>
               ))}
             </ul>
-            <p className="mt-5 text-sm text-cream-dim">
-              More than seven years working directly with clients, business
-              owners, and stakeholders.
-            </p>
-            <p className="mt-3 text-sm text-cream-faint">
-              B.S. in Business Management
-              <span className="italic"> (exact official degree title pending final confirmation)</span>.
-            </p>
+
+            <div className="mt-6">
+              <span className="label label-moss">Education</span>
+              <p className="mt-2 text-cream">
+                Bachelor of Science in Business Administration
+              </p>
+              <p className="text-sm text-cream-dim">
+                University at Buffalo, SUNY, School of Management
+              </p>
+              <p className="text-sm text-cream-dim">
+                Concentration: Financial Analysis
+              </p>
+            </div>
           </Reveal>
 
           {/* Transferable skills */}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ *
- *  Patrick Hourihan — portfolio design tokens
+ *  Patrick Hourihan - portfolio design tokens
  *  Dark editorial "technical field manual" system.
  *  Deep charcoal + dark forest grounds, warm off-white type,
  *  restrained ember-orange and muted-moss accents.
@@ -22,7 +22,7 @@
   --color-cream-dim: #b8b2a3;
   --color-cream-faint: #7f7d72;
 
-  /* Accents — used sparingly */
+  /* Accents - used sparingly */
   --color-ember: #d96a33;
   --color-ember-soft: #ec8b56;
   --color-moss: #8fac7e;
@@ -68,7 +68,7 @@ body {
   overflow-x: hidden;
 }
 
-/* A faint topographic / grid wash on the page ground — field-manual paper. */
+/* A faint topographic / grid wash on the page ground - field-manual paper. */
 body::before {
   content: "";
   position: fixed;
@@ -176,7 +176,7 @@ a {
 }
 
 /* ------------------------------------------------------------------ *
- *  Scroll reveal — progressive enhancement only.
+ *  Scroll reveal - progressive enhancement only.
  *  Content is FULLY VISIBLE by default. It is only hidden-then-revealed
  *  when JavaScript is present (html.js) AND the visitor has not asked
  *  for reduced motion. If JS fails or motion is reduced, nothing hides.

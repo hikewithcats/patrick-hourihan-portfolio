@@ -15,7 +15,7 @@ export default function Capabilities() {
           index="03"
           label="Technical Capabilities"
           title="The tools I actually reach for"
-          intro="A working toolkit — only what I've used to build and ship the projects above."
+          intro="A working toolkit. Only what I've used to build and ship the projects above."
         />
 
         <dl className="mt-14 divide-y divide-line border-t border-line">

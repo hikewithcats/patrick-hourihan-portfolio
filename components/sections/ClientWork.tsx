@@ -17,7 +17,7 @@ export default function ClientWork() {
           index="02"
           label="Selected Client Work"
           title="Websites built for real businesses"
-          intro="Client engagements where I owned requirements, the responsive build, integrations, and deployment — with an AI-assisted workflow throughout."
+          intro="Client engagements where I owned requirements, the responsive build, integrations, and deployment."
         />
 
         <div className="mt-14 space-y-8">
@@ -25,14 +25,6 @@ export default function ClientWork() {
             <ClientCard key={project.id} project={project} />
           ))}
         </div>
-
-        <Reveal
-          as="p"
-          className="mt-8 max-w-2xl text-sm text-cream-faint"
-        >
-          Additional client work is in progress and will be added here as each
-          site goes live and is verified.
-        </Reveal>
       </div>
     </section>
   );

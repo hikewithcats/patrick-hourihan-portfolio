@@ -1,4 +1,4 @@
-# Patrick Hourihan — Portfolio
+# Patrick Hourihan - Portfolio
 
 A focused, professional software-development portfolio for **Patrick Hourihan**,
 deployed at **PatrickHourihan.com**.
@@ -11,8 +11,8 @@ recruiter-facing portfolio for software-development and AI-related roles.
 
 ## Purpose
 
-Present Patrick's real, verified work — three software projects and selected
-client websites — without overstating seniority or fabricating metrics. Every
+Present Patrick's real, verified work - three software projects and selected
+client websites - without overstating seniority or fabricating metrics. Every
 fact, link, and status on the site was verified against the actual project
 repositories, live HTTP checks, and GitHub repo visibility before it shipped.
 
@@ -22,7 +22,7 @@ repositories, live HTTP checks, and GitHub repo visibility before it shipped.
 - **TypeScript**
 - **Tailwind CSS v4** (CSS-first `@theme`, no `tailwind.config.js`)
 - **next/font** (Fraunces · Inter · JetBrains Mono, self-hosted at build)
-- **Static export** — no database, no auth, no server runtime
+- **Static export** - no database, no auth, no server runtime
 - Designed for **Cloudflare Pages**
 
 ## Architecture
@@ -58,22 +58,24 @@ This keeps it fast, simple, and trivially static-exportable.
 
 ## Content structure
 
-- **Hero** — name, headline, supporting + secondary statement, primary actions.
-- **Selected Software Projects** — My Cartoon Pet, IPlayForKeepers, Keeping Up
-  With The Robots. Each has a problem / built / stack / expandable case study
-  (implementation, AI use, what Patrick owned), status, and verified links only.
-- **Selected Client Work** — Cell Beauty Health (live). Zubin Home Evaluation
-  exists in the data but is `hidden` until a verified URL is supplied.
-- **Technical Capabilities** — editorial groupings of verified skills.
-- **How I Build With AI** — the six-step workflow and the ownership statement.
-- **Professional Background** — prior roles and transferable skills.
-- **Contact** + **Footer** — email, GitHub, PoundKeeper.
+- **Hero** - name, headline, supporting + secondary statement, primary actions.
+- **Selected Software Projects** - My Cartoon Pet, IPlayForKeepers (live
+  interactive prototype), Keeping Up With The Robots (live). Each has a problem /
+  built / stack / expandable case study (implementation, AI use, what Patrick
+  owned, current limitations), status, and verified links only.
+- **Selected Client Work** - Cell Beauty Health (live) and Zubin Home Valuation
+  (live). A client card is shown publicly only once its production URL is
+  verified; the data layer supports `hidden` for any not-yet-live engagement.
+- **Technical Capabilities** - editorial groupings of verified skills.
+- **How I Build With AI** - the six-step workflow and the ownership statement.
+- **Professional Background** - prior roles and transferable skills.
+- **Contact** + **Footer** - email, GitHub, PoundKeeper.
 
 ### Editing content
 
 All project and capability content lives in `lib/`. To change the domain,
 contact email, social links, or résumé availability, edit **`lib/site.ts`**
-only — metadata, canonical URL, and structured data all read from it.
+only - metadata, canonical URL, and structured data all read from it.
 
 Link rules enforced in `lib/projects.ts`:
 - A **live link** appears only when the domain returned HTTP 200.
@@ -129,10 +131,9 @@ the build command, output directory, custom-domain setup, and smoke tests.
 ## Current limitations
 
 - **Résumé PDF** is not yet included (button disabled by design).
-- **Project images** are branded treatments; real screenshots can be swapped in
-  for the two live sites.
-- **OG image** is an SVG — a rasterized 1200×630 PNG is recommended for maximum
-  social-platform compatibility.
-- **Zubin Home Evaluation** is hidden pending a verified live URL.
-- **My Cartoon Pet** and **IPlayForKeepers** have no live or source links by
-  design (domains not live; repositories private).
+- **My Cartoon Pet** is in development with no live or source link by design
+  (not publicly launched; repository private). It uses real screenshots of its
+  marketing homepage and sign-in screen - the authenticated app screens are
+  intentionally not shown, since no real generation has been run.
+- The other four projects use real, optimized desktop screenshots captured from
+  their production sites.

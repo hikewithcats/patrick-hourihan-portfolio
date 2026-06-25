@@ -1,5 +1,5 @@
 /**
- * Technical capabilities — verified skills only.
+ * Technical capabilities - verified skills only.
  *
  * Deliberately excludes anything unverified (e.g. C#, .NET, ASP.NET,
  * SQL Server, Python, AWS, Docker). Presented as editorial groupings,
@@ -77,7 +77,7 @@ export const aiWorkflow: { step: string; title: string; body: string }[] = [
   {
     step: "01",
     title: "Define the problem",
-    body: "Start from the actual user or business problem and who it is for — not a feature list.",
+    body: "Start from the actual user or business problem and who it is for, not a feature list.",
   },
   {
     step: "02",
@@ -97,7 +97,7 @@ export const aiWorkflow: { step: string; title: string; body: string }[] = [
   {
     step: "05",
     title: "Debug for real",
-    body: "Debug failures using logs, database state, and real application behavior — not by trusting output blindly.",
+    body: "Debug failures using logs, database state, and real application behavior, not by trusting output blindly.",
   },
   {
     step: "06",
@@ -106,20 +106,43 @@ export const aiWorkflow: { step: string; title: string; body: string }[] = [
   },
 ];
 
-/** Professional background — prior roles connected to software work. */
-export const backgroundRoles: { role: string; org: string }[] = [
-  { role: "Energy Consultant", org: "Trinity Solar" },
-  { role: "Pound Keeper", org: "Belchertown Animal Control" },
-  { role: "Volunteer", org: "Dakin Humane Society" },
-  { role: "Outside Sales & Territory Management", org: "Prior roles" },
+/** Professional background, prior roles connected to software work. */
+export const backgroundRoles: { role: string; org: string; context?: string }[] = [
+  {
+    role: "Software Projects & AI-Assisted Development",
+    org: "Current focus",
+    context: "The portfolio projects above: defining, building, debugging, and shipping real software.",
+  },
+  {
+    role: "Energy Consultant",
+    org: "Trinity Solar",
+    context: "Consultative, client-facing role: assessing needs and explaining a technical product to homeowners.",
+  },
+  {
+    role: "Territory Manager",
+    org: "MicroSurgical Technology",
+    context: "Ophthalmic medical-device sales supporting surgical facilities across Florida, working with surgeons, hospital administrators, and surgical teams on technical product education and account management.",
+  },
+  {
+    role: "Outside Sales Representative",
+    org: "W.B. Mason",
+    context: "B2B outside sales: opened new markets in Buffalo and Miami, managed a large account base, and handled daily prospecting, pricing, contracts, and customer support.",
+  },
+  {
+    role: "Pound Keeper / Animal Care",
+    org: "Belchertown Animal Control",
+  },
+  {
+    role: "Community Work",
+    org: "Dakin Humane Society / BARC",
+  },
 ];
 
 export const transferableSkills: string[] = [
   "Requirements discovery",
   "Explaining complex systems",
-  "Problem solving",
-  "Stakeholder communication",
-  "Follow-through",
-  "Working independently",
-  "Translating nontechnical needs into concrete deliverables",
+  "Client and stakeholder communication",
+  "Independent follow-through",
+  "Debugging messy real-world problems",
+  "Turning nontechnical needs into concrete deliverables",
 ];

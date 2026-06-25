@@ -10,20 +10,15 @@ const TONE: Record<ProjectStatus, { dot: string; text: string; ring: string }> =
     text: "text-moss",
     ring: "ring-moss/30",
   },
+  "Live interactive prototype": {
+    dot: "bg-moss",
+    text: "text-moss",
+    ring: "ring-moss/30",
+  },
   "In development": {
     dot: "bg-ember",
     text: "text-ember-soft",
     ring: "ring-ember/30",
-  },
-  "In development — working prototype": {
-    dot: "bg-ember",
-    text: "text-ember-soft",
-    ring: "ring-ember/30",
-  },
-  "Draft — awaiting verified URL": {
-    dot: "bg-cream-faint",
-    text: "text-cream-dim",
-    ring: "ring-line",
   },
 };
 

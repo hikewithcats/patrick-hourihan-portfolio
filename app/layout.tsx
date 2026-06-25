@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: "%s — Patrick Hourihan",
+    template: "%s · Patrick Hourihan",
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -59,7 +59,8 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} — ${siteConfig.role}`,
+        type: "image/png",
+        alt: `${siteConfig.name}, ${siteConfig.role}`,
       },
     ],
   },
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
   },
 };
 
-/** Person + work structured data. Conservative — no fabricated claims. */
+/** Person + work structured data. Conservative - no fabricated claims. */
 function structuredData() {
   const person = {
     "@context": "https://schema.org",
