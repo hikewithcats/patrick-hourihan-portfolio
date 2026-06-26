@@ -22,6 +22,11 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.dev.vars
+
+# cloudflare / wrangler (local deploy artifacts)
+.wrangler/
+.open-next/
 
 # typescript
 *.tsbuildinfo

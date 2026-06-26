@@ -1,0 +1,19 @@
+{
+  // Deploy this site to Cloudflare as a STATIC site (Workers Static Assets).
+  //
+  // This is NOT an OpenNext / server build. `npm run build` runs `next build`
+  // with `output: "export"` and emits a fully static site into `out/`. The
+  // presence of this file (with an `assets` directory and no `main` worker
+  // script) tells `wrangler deploy` to upload `out/` as static assets instead
+  // of trying to wrap the app with the Next.js OpenNext adapter.
+  //
+  // Build command:  npm run build
+  // Deploy command: npx wrangler deploy   (uploads ./out below)
+  "name": "patrick-hourihan-portfolio",
+  "compatibility_date": "2026-06-26",
+  "assets": {
+    "directory": "./out",
+    // Serve the prebuilt 404.html for unknown paths.
+    "not_found_handling": "404-page"
+  }
+}

@@ -8,6 +8,27 @@ Cloudflare serves the `out/` directory directly from its edge.
 > Nothing here triggers a deploy automatically. These are the steps Patrick (or
 > whoever owns the Cloudflare account) follows to ship it.
 
+> **IMPORTANT: this is a static site, not an OpenNext/Workers server build.**
+> If Cloudflare auto-detects "Next.js" and runs `@opennextjs/cloudflare` it will
+> fail (it looks for a `.next/standalone` server output that an `output: export`
+> build does not produce). There are two correct, supported paths below. Use
+> **one** of them.
+
+---
+
+## TL;DR (two correct ways to deploy)
+
+- **Path 1 - Cloudflare Pages (simplest).** Create a *Pages* project, set build
+  command `npm run build` and output directory `out`. No Worker, no OpenNext.
+- **Path 2 - Workers Static Assets.** Keep a *Workers* project whose deploy
+  command is `npx wrangler deploy`. This repo ships a [`wrangler.jsonc`](wrangler.jsonc)
+  that points `assets.directory` at `./out`, so `wrangler deploy` uploads the
+  static export instead of running OpenNext. Just retry the deployment.
+
+If a deploy log shows `@opennextjs/cloudflare migrate` or
+`opennextjs-cloudflare build`, the project is on the wrong path - switch to one
+of the two above.
+
 ---
 
 ## Why it's static-export compatible
