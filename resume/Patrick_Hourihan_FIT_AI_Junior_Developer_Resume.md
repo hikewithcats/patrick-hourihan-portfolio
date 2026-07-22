@@ -38,7 +38,7 @@ Junior software developer and AI-assisted product builder based in Western Massa
 
 ## Professional Experience
 
-**Energy Consultant | Trinity Solar**
+**Energy Consultant | Trinity Solar | Nov 2025 to Present**
 - Translate technical and financial details of solar projects into plain-English recommendations for nontechnical homeowners.
 
 **Territory Manager | MicroSurgical Technology | May 2018 to Nov 2020**
@@ -49,11 +49,12 @@ Junior software developer and AI-assisted product builder based in Western Massa
 - Opened Buffalo and Miami markets, generating $1M+ in annual revenue within 12 months.
 - Managed 400+ B2B accounts across prospecting, pricing, contracts, and retention.
 
-**Pound Keeper / Animal Care | Belchertown Animal Control:** animal care, intake, records, and community-facing service.
+**Pound Keeper / Animal Care | Belchertown Animal Control | Mar 2025 to Present**
+- Animal care, intake, records, and community-facing service.
 
 ## Education
 
 **Bachelor of Science in Business Administration**
 University at Buffalo, SUNY, School of Management | Concentration: Financial Analysis
 
-Community: Dakin Humane Society volunteer and BARC board member.
+Community: Dakin Humane Society volunteer; Belchertown Animal Relief Committee board member.

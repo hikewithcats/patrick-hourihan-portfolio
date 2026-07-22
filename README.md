@@ -23,7 +23,7 @@ repositories, live HTTP checks, and GitHub repo visibility before it shipped.
 - **Tailwind CSS v4** (CSS-first `@theme`, no `tailwind.config.js`)
 - **next/font** (Fraunces · Inter · JetBrains Mono, self-hosted at build)
 - **Static export** - no database, no auth, no server runtime
-- Designed for **Cloudflare Pages**
+- Deployed as **Cloudflare Workers static assets** (see `wrangler.jsonc`)
 
 ## Architecture
 
@@ -43,7 +43,7 @@ components/
                     AiWorkflow, Background, Contact
   ui/               SectionHeading, StatusPill, icons
 lib/
-  site.ts           Centralized site config (domain, links, résumé flag) ← edit here
+  site.ts           Centralized site config (domain, links, résumé path) ← edit here
   projects.ts       Software + client project data (verified facts only)
   capabilities.ts   Skill groups, AI workflow steps, background
 public/
@@ -74,7 +74,7 @@ This keeps it fast, simple, and trivially static-exportable.
 ### Editing content
 
 All project and capability content lives in `lib/`. To change the domain,
-contact email, social links, or résumé availability, edit **`lib/site.ts`**
+contact email, social links, or résumé path, edit **`lib/site.ts`**
 only - metadata, canonical URL, and structured data all read from it.
 
 Link rules enforced in `lib/projects.ts`:
@@ -83,18 +83,17 @@ Link rules enforced in `lib/projects.ts`:
 
 ## Project-image workflow
 
-Branded SVG cover images live in `public/images/projects/`. They are deliberate
-designed treatments, not empty placeholders or fake screenshots. To swap in a
-real screenshot for a live project, see
+Real, optimized screenshot assets live in `public/images/projects/` (1280×800
+JPEGs captured from each production site). To refresh one, see
 [`public/images/projects/README.md`](public/images/projects/README.md).
 
 ## Résumé file
 
-The "Download Résumé" button targets
-`public/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf`. Until that PDF
-exists, the button renders **disabled** (never a broken link). Enable it by
-dropping the file in and flipping `resume.available` to `true` in `lib/site.ts`.
-See [`public/resume/README.md`](public/resume/README.md).
+The "Download Résumé" button links directly to
+`public/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf`, a one-page
+selectable-text PDF rendered from `resume/resume.html`.
+See [`public/resume/README.md`](public/resume/README.md) for the
+regeneration command.
 
 ## Local setup
 
@@ -115,9 +114,12 @@ npm run dev        # http://localhost:3000
 
 ## Deployment strategy
 
-Static export to **Cloudflare Pages**. `next build` emits a fully static `out/`
-directory (no server). See **[CLOUDFLARE_DEPLOY.md](CLOUDFLARE_DEPLOY.md)** for
-the build command, output directory, custom-domain setup, and smoke tests.
+Static export served as **Cloudflare Workers static assets**. `next build`
+emits a fully static `out/` directory (no server), and `npx wrangler deploy`
+uploads it to the existing `patrick-hourihan-portfolio` Worker per
+[`wrangler.jsonc`](wrangler.jsonc). See
+**[CLOUDFLARE_DEPLOY.md](CLOUDFLARE_DEPLOY.md)** for the full production
+deploy path, verification, and rollback.
 
 ## Accessibility & quality
 
@@ -130,10 +132,10 @@ the build command, output directory, custom-domain setup, and smoke tests.
 
 ## Current limitations
 
-- **Résumé PDF** is not yet included (button disabled by design).
-- **My Cartoon Pet** is in development with no live or source link by design
-  (not publicly launched; repository private). It uses real screenshots of its
-  marketing homepage and sign-in screen - the authenticated app screens are
-  intentionally not shown, since no real generation has been run.
-- The other four projects use real, optimized desktop screenshots captured from
-  their production sites.
+- **My Cartoon Pet** is a live public beta at
+  [mycartoonpet.com](https://mycartoonpet.com) with no source link by design
+  (repository private). Its screenshots show the live public marketing
+  homepage and sign-in screen - authenticated app screens are intentionally
+  not shown.
+- All projects use real, optimized desktop screenshots captured from their
+  production sites.

@@ -118,7 +118,12 @@ export const aiWorkflow: { step: string; title: string; body: string }[] = [
 ];
 
 /** Professional background, prior roles connected to software work. */
-export const backgroundRoles: { role: string; org: string; context?: string }[] = [
+export const backgroundRoles: {
+  role: string;
+  org: string;
+  dates?: string;
+  context?: string;
+}[] = [
   {
     role: "Software Projects & AI-Assisted Development",
     org: "Current focus",
@@ -127,25 +132,29 @@ export const backgroundRoles: { role: string; org: string; context?: string }[] 
   {
     role: "Energy Consultant",
     org: "Trinity Solar",
+    dates: "Nov 2025 to Present",
     context: "Consultative, client-facing role: assessing needs and explaining a technical product to homeowners.",
   },
   {
     role: "Territory Manager",
     org: "MicroSurgical Technology",
+    dates: "May 2018 to Nov 2020",
     context: "Ophthalmic medical-device sales supporting surgical facilities across Florida, working with surgeons, hospital administrators, and surgical teams on technical product education and account management.",
   },
   {
     role: "Outside Sales Representative",
     org: "W.B. Mason",
+    dates: "Nov 2013 to Apr 2018",
     context: "B2B outside sales: opened new markets in Buffalo and Miami, managed a large account base, and handled daily prospecting, pricing, contracts, and customer support.",
   },
   {
     role: "Pound Keeper / Animal Care",
     org: "Belchertown Animal Control",
+    dates: "Mar 2025 to Present",
   },
   {
     role: "Community Work",
-    org: "Dakin Humane Society / BARC",
+    org: "Dakin Humane Society / Belchertown Animal Relief Committee",
   },
 ];
 

@@ -32,6 +32,11 @@ export default function Background() {
                     <span className="font-display text-lg text-cream">{r.role}</span>
                     <span className="text-sm text-cream-dim">{r.org}</span>
                   </div>
+                  {r.dates && (
+                    <p className="mt-1 font-mono text-xs text-cream-faint">
+                      {r.dates}
+                    </p>
+                  )}
                   {r.context && (
                     <p className="mt-1.5 text-sm text-cream-faint">{r.context}</p>
                   )}

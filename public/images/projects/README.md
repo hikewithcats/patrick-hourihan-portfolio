@@ -14,11 +14,10 @@ project and client-work cards.
 | `cell-beauty-health.jpg` | Cell Beauty Health | Real screenshot (1280×800) |
 | `zubin-home-valuation.jpg` | Zubin Home Valuation | Real screenshot (1280×800) |
 
-Every project uses real desktop screenshots, saved as optimized JPEGs. The four
-live sites were captured from production; My Cartoon Pet's were captured from a
-local production build of the verified branch (marketing homepage + sign-in
-only - the authenticated app screens are intentionally not shown, since no real
-generation has been run).
+Every project uses real desktop screenshots, saved as optimized JPEGs, captured
+from each production site. My Cartoon Pet's were captured from the live public
+beta at mycartoonpet.com (marketing homepage + sign-in only - the
+authenticated app screens are intentionally not shown).
 
 ## Refreshing a screenshot
 
@@ -31,8 +30,8 @@ generation has been run).
 Do **not** hotlink screenshots from external sites - always store a local,
 optimized asset. Keep `imageAlt` descriptive.
 
-## Why SVG
+## Why plain optimized assets
 
-SVGs are tiny, crisp at every breakpoint, and load instantly with no image
-optimization server (this site is a static export). `next.config.ts` sets
-`images.unoptimized` accordingly.
+This site is a static export with no image optimization server;
+`next.config.ts` sets `images.unoptimized` accordingly, so every asset here
+must be pre-optimized before it ships.

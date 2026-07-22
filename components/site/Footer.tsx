@@ -60,7 +60,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Patrick Hourihan. End of field report.
           </p>
           <p className="font-mono text-xs text-cream-faint">
-            Built with Next.js · Static export · Cloudflare Pages
+            Built with Next.js · Static export · Cloudflare Workers
           </p>
         </div>
       </div>
