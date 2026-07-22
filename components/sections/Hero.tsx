@@ -3,15 +3,13 @@ import { siteConfig } from "@/lib/site";
 import { ArrowDown, ArrowUpRight, DocIcon, GitHubIcon, MailIcon } from "@/components/ui/icons";
 
 const fieldNotes: { k: string; v: string }[] = [
-  { k: "stack", v: "TypeScript · Next.js · Supabase" },
-  { k: "focus", v: "AI-enabled products · web apps" },
+  { k: "stack", v: "TypeScript · Next.js · SQL" },
+  { k: "focus", v: "AI products · internal tools" },
   { k: "status", v: "Building & open to roles" },
   { k: "region", v: "Western Massachusetts" },
 ];
 
 export default function Hero() {
-  const resumeAvailable = siteConfig.resume.available;
-
   return (
     <section
       aria-labelledby="hero-name"
@@ -41,14 +39,15 @@ export default function Hero() {
             className="mt-5 max-w-2xl font-display text-2xl text-cream-dim sm:text-3xl"
           >
             Software developer building{" "}
-            <span className="text-cream">AI-enabled products</span>. Practical
-            tools, real websites, and shipped software.
+            <span className="text-cream">AI products and internal tools</span>.
+            Practical software, real websites, and a live public beta.
           </Reveal>
 
           <Reveal as="p" delay={180} className="mt-6 max-w-2xl text-cream-dim">
-            I build practical software, AI-enabled products, business tools, and
-            production websites using TypeScript, Next.js, Supabase, SQL, APIs,
-            and modern AI development workflows.
+            Based in Western Massachusetts, I build practical web applications,
+            internal analytics, automation, and AI-enabled products using
+            TypeScript, Next.js, SQL, Supabase/Postgres, APIs, Git, and modern
+            AI coding assistants.
           </Reveal>
 
           <Reveal
@@ -82,24 +81,13 @@ export default function Hero() {
               <ArrowUpRight className="h-3.5 w-3.5 text-cream-faint" />
             </a>
 
-            {resumeAvailable ? (
-              <a
-                href={siteConfig.resume.path}
-                download
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
-              >
-                <DocIcon className="h-4 w-4" /> {siteConfig.resume.label}
-              </a>
-            ) : (
-              <span
-                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-dashed border-line px-5 py-2.5 text-sm font-medium text-cream-faint"
-                aria-disabled="true"
-                title="Résumé PDF is being finalized and will be available soon."
-              >
-                <DocIcon className="h-4 w-4" /> {siteConfig.resume.label}
-                <span className="text-[0.7rem] uppercase tracking-wider">soon</span>
-              </span>
-            )}
+            <a
+              href={siteConfig.resume.path}
+              download
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
+            >
+              <DocIcon className="h-4 w-4" /> {siteConfig.resume.label}
+            </a>
 
             <a
               href={`mailto:${siteConfig.email}`}

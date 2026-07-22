@@ -4,8 +4,6 @@ import { siteConfig } from "@/lib/site";
 import { ArrowUpRight, DocIcon, GitHubIcon, MailIcon } from "@/components/ui/icons";
 
 export default function Contact() {
-  const resumeAvailable = siteConfig.resume.available;
-
   return (
     <section
       id="contact"
@@ -54,24 +52,13 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={80} className="mt-4 flex flex-wrap items-center gap-3">
-          {resumeAvailable ? (
-            <a
-              href={siteConfig.resume.path}
-              download
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
-            >
-              <DocIcon className="h-4 w-4" /> {siteConfig.resume.label}
-            </a>
-          ) : (
-            <span
-              className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-dashed border-line px-5 py-2.5 text-sm font-medium text-cream-faint"
-              aria-disabled="true"
-              title="Résumé PDF is being finalized and will be available soon."
-            >
-              <DocIcon className="h-4 w-4" /> {siteConfig.resume.label}
-              <span className="text-[0.7rem] uppercase tracking-wider">soon</span>
-            </span>
-          )}
+          <a
+            href={siteConfig.resume.path}
+            download
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
+          >
+            <DocIcon className="h-4 w-4" /> {siteConfig.resume.label}
+          </a>
           <a
             href={siteConfig.links.personalSite}
             target="_blank"

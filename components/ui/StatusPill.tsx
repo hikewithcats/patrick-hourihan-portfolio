@@ -10,6 +10,11 @@ const TONE: Record<ProjectStatus, { dot: string; text: string; ring: string }> =
     text: "text-moss",
     ring: "ring-moss/30",
   },
+  "Public beta": {
+    dot: "bg-moss",
+    text: "text-moss",
+    ring: "ring-moss/30",
+  },
   "Live interactive prototype": {
     dot: "bg-moss",
     text: "text-moss",
@@ -24,7 +29,7 @@ const TONE: Record<ProjectStatus, { dot: string; text: string; ring: string }> =
 
 export default function StatusPill({ status }: { status: ProjectStatus }) {
   const tone = TONE[status];
-  const live = status === "Live in production";
+  const live = status === "Live in production" || status === "Public beta";
   return (
     <span
       className={`inline-flex items-center gap-2 rounded-full bg-ink-2/70 px-3 py-1 text-xs font-medium ring-1 ${tone.ring} ${tone.text}`}

@@ -2,8 +2,10 @@
  * Project + client-work data.
  *
  * Every fact here was verified against the actual repositories, live HTTP
- * checks, and GitHub repo visibility on 2026-06-23. Links appear ONLY when
- * verified:
+ * checks, and GitHub repo visibility on 2026-06-23, and re-verified for the
+ * My Cartoon Pet public-beta launch on 2026-07-22 (see the handoff packet in
+ * reference:mycartoonpetupdate/ and the my-cartoon-pet repo itself). Links
+ * appear ONLY when verified:
  *   - `liveUrl` is set only when the domain returned HTTP 200.
  *   - `githubUrl` is set only when the GitHub repository is PUBLIC.
  *
@@ -13,6 +15,7 @@
 
 export type ProjectStatus =
   | "Live in production"
+  | "Public beta"
   | "Live interactive prototype"
   | "In development";
 
@@ -30,6 +33,12 @@ export interface Project {
   problem: string;
   /** Deeper technical implementation details (case study). */
   implementation: string[];
+  /**
+   * Compact "internal systems" items (case study): the internal tooling
+   * behind the product. Each explains the business problem, the technical
+   * mechanism, and the skill demonstrated. Keep to three or fewer.
+   */
+  internalSystems?: { title: string; body: string }[];
   /** Short, varied note on how Patrick worked and what he owned (case study). */
   approach: string;
   /** Honest current limitations (case study, optional). */
@@ -59,46 +68,61 @@ export const softwareProjects: Project[] = [
     id: "my-cartoon-pet",
     name: "My Cartoon Pet",
     summary:
-      "AI-enabled pet design SaaS where users upload a pet photo, generate a cartoon mascot-style design, preview it on merchandise, and save results to a private gallery.",
+      "AI-enabled SaaS product where users upload a pet photograph, generate cartoon mascot-style artwork, preview designs on merchandise, and manage results through a private gallery.",
     stack: [
       "Next.js",
       "TypeScript",
       "Supabase",
       "Postgres",
-      "RLS",
-      "Private storage",
+      "SQL",
+      "Row Level Security",
       "Stripe",
       "Vercel",
     ],
     build: [
-      "Built the upload, auth, generation, gallery, and billing architecture with Next.js, Supabase, Postgres, private storage, RLS, Stripe, and Vercel.",
-      "Implemented a secure upload flow with signed URLs, ownership checks, quota handling, and private result storage.",
-      "Used AI coding agents for implementation and debugging, then reviewed diffs, verified tests, and kept production gated until real generation QA passes.",
+      "Built and launched the public beta: guided upload and generation flow, pet profiles, private gallery, Stripe subscription billing, and signed-URL private storage on Next.js, Supabase, and Vercel.",
+      "Designed the relational data layer: SQL migrations, Row Level Security on every user-owned table, and Postgres functions that enforce ownership and generation quotas atomically.",
+      "Built internal founder analytics, scorecards, and reliable webhook-driven automation, working with AI coding assistants through written specs, repository audits, tests, and release gates.",
     ],
     problem:
-      "Generating any cartoon is easy. Generating a consistent, on-brand one a pet owner recognizes as their animal, with private uploads and trustworthy billing, is the hard part.",
+      "Generating any cartoon is easy. Generating a consistent one a pet owner recognizes as their animal, with private uploads, trustworthy billing, and honest measurement of whether the product is working, is the hard part.",
     implementation: [
       "Three-step upload: authorize, a signed PUT to private storage, then a commit that verifies the stored file and enforces per-plan limits atomically in Postgres.",
-      "Server-only generation: an atomic quota-check-and-create function runs before any paid AI call. Failed generations are recorded without consuming quota.",
+      "Server-only generation: an atomic quota-check-and-create SQL function runs before any paid AI call. Failed generations are recorded without consuming quota.",
       "Stripe Checkout and a billing portal, with a signature-verified webhook as the single source of truth for plan status.",
-      "Gallery results re-list with freshly signed URLs, so they outlive any single link.",
+      "An append-only product-events ledger and an email outbox with unique event keys, retries, and a reconciliation pass, so automation never double-sends or silently drops work.",
+    ],
+    internalSystems: [
+      {
+        title: "Founder analytics",
+        body: "Tracks product events and produces reviewable scorecards for activation, generation success, and quality signals. Built as a server-only analytics layer on an append-only Postgres event ledger.",
+      },
+      {
+        title: "Improvement Graph",
+        body: "Connects customer outcomes, activation and quality metrics, countermetrics, data sources, ownership, and review cadence into one measurement and decision framework. Missing data is flagged rather than treated as zero.",
+      },
+      {
+        title: "Reliable automation",
+        body: "Reduces duplicate or missed work in billing and email automation. Uses idempotent webhook processing, an email outbox, and reconciliation checks so confirmations send exactly once.",
+      },
     ],
     approach:
-      "Mid-build I hit a real bug: the database had migrated to a new generation schema while the code still called functions that no longer existed. I traced it against the live database, realigned the API, and added tests that pin app constants to the migration. I also hardened the generations table to be server-write-only, closing a quota-refund hole.",
+      "Mid-build I hit a real bug: the database had migrated to a new generation schema while the code still called functions that no longer existed. I traced it against the live database, realigned the API, and added tests that pin app constants to the migration. AI accelerated implementation and analysis; I owned product direction, requirements, acceptance criteria, review, testing decisions, and release gates.",
     limitations: [
-      "Not publicly launched.",
-      "Real generation QA still needs Vercel environment variables and a Supabase migration.",
-      "No live link until the upload-to-result flow is verified.",
+      "Public beta with no paying customers yet.",
+      "Final generation-quality review is still in progress.",
+      "Merchandise previews are live, but ordering and fulfillment are gated for a limited release.",
     ],
-    status: "In development",
-    // No live link: not publicly launched (preview is gated behind Vercel login).
-    // No GitHub link: repository is private (verified 2026-06-25).
+    status: "Public beta",
+    liveUrl: "https://mycartoonpet.com",
+    // Verified live and public (HTTP 200) on 2026-07-22.
+    // No GitHub link: repository is private (verified 2026-07-11).
     image: "/images/projects/my-cartoon-pet.jpg",
     imageAlt:
-      "Screenshot of the My Cartoon Pet marketing homepage: a serif hero reading “Your pet, as a cartoon character,” a “Make my pet's cartoon” call to action, and a photo-to-cartoon how-it-works panel.",
+      "My Cartoon Pet public beta homepage: a serif hero reading “Your pet, as a cartoon character,” a “Make my pet's cartoon” call to action, and a real pet photo shown next to its finished cartoon sticker.",
     detailImage: "/images/projects/my-cartoon-pet-signin.jpg",
     detailImageAlt:
-      "Screenshot of the My Cartoon Pet sign-in screen: a branded “Welcome back” card with email and password fields and a Sign in button. No real data is shown.",
+      "My Cartoon Pet public beta sign-in screen: a branded “Welcome back” card with empty email and password fields and a Sign in button. No real data is shown.",
   },
   {
     id: "iplayforkeepers",

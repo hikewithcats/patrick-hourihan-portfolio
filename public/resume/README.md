@@ -6,9 +6,10 @@ The "Download Résumé" button links to:
 public/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf
 ```
 
-This PDF **is committed** and the button is **enabled** (`resume.available: true`
-in [`lib/site.ts`](../../lib/site.ts)). It is a one-page, selectable-text PDF
-tailored for a Junior Software Developer (AI-focused) application.
+This PDF **is committed** and the hero and contact buttons link to it directly
+(`resume.path` in [`lib/site.ts`](../../lib/site.ts)). It is a one-page,
+selectable-text PDF tailored for a Junior Software Developer (AI-focused)
+application in Westfield, MA.
 
 ## Regenerating the PDF
 
@@ -26,7 +27,3 @@ as the human-readable source of record. To regenerate after editing the HTML:
 This uses headless Chrome (no extra dependencies) and produces searchable text,
 not a screenshot. Keep the output to one page; tighten the HTML/CSS rather than
 spilling to a second page.
-
-## To disable the button again
-
-Set `resume.available` to `false` in `lib/site.ts`.

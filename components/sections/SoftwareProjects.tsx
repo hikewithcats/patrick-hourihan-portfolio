@@ -140,6 +140,21 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
                 ))}
               </ul>
             </div>
+            {project.internalSystems && project.internalSystems.length > 0 && (
+              <div>
+                <span className="label label-moss">
+                  Internal systems behind {project.name}
+                </span>
+                <ul className="mt-2.5 space-y-3">
+                  {project.internalSystems.map((item) => (
+                    <li key={item.title} className="text-sm">
+                      <span className="font-medium text-cream">{item.title}.</span>{" "}
+                      <span className="text-cream-dim">{item.body}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <Field label="How I worked" body={project.approach} />
             {project.limitations && project.limitations.length > 0 && (
               <div>

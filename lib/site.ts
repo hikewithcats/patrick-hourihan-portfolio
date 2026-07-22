@@ -8,7 +8,7 @@
 export const siteConfig = {
   name: "Patrick Hourihan",
   shortName: "PH",
-  role: "Software Developer Building AI-Enabled Products",
+  role: "Software Developer Building AI Products and Internal Tools",
   location: "Western Massachusetts",
   /* Approx. coordinates for Belchertown, MA - a field-report detail. */
   coordinates: "42.2751° N, 72.4009° W",
@@ -16,9 +16,9 @@ export const siteConfig = {
   url: "https://patrickhourihan.com",
   // The www host is configured as a redirect to the apex in Cloudflare; see CLOUDFLARE_DEPLOY.md.
 
-  title: "Patrick Hourihan: Software Developer Building AI-Enabled Products",
+  title: "Patrick Hourihan: Software Developer Building AI Products and Internal Tools",
   description:
-    "Patrick Hourihan builds practical software, AI-enabled products, business tools, and production websites using TypeScript, Next.js, Supabase, SQL, APIs, and modern AI development workflows.",
+    "Patrick Hourihan builds practical web applications, internal analytics, automation, and AI-enabled products using TypeScript, Next.js, SQL, Supabase/Postgres, APIs, Git, and modern AI coding assistants.",
 
   email: "patrickmhourihan@gmail.com",
 
@@ -33,11 +33,9 @@ export const siteConfig = {
   /**
    * Résumé download.
    * The PDF lives at `public/resume/<file>` (rendered from `resume/resume.html`).
-   * When `available` is true, the hero and contact buttons become active
-   * download links; when false they render as a clearly-disabled button.
+   * The hero and contact buttons link to it directly.
    */
   resume: {
-    available: true,
     path: "/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf",
     label: "Download Résumé",
   },
