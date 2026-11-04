@@ -21,8 +21,10 @@ Quote emails go to `QUOTE_TO` and are sent from `QUOTE_FROM` (both in
 `wrangler.jsonc`).
 
 1. Log in: `npx wrangler login`.
-2. In Resend, verify `patrickhourihan.com` as a sending domain. (Or point
-   `QUOTE_FROM` at a domain already verified in the same Resend account.)
+2. `QUOTE_FROM` must use a domain verified in Resend. It currently uses
+   `updates.mycartoonpet.com`, which is already verified. To send from
+   `patrickhourihan.com` instead, verify that domain in Resend and update
+   `QUOTE_FROM`.
 3. Store the API key as a secret. Paste it at the prompt; it never goes in the
    repo: `npx wrangler secret put RESEND_API_KEY`.
 4. After deploying, send one real test request from the live site and confirm

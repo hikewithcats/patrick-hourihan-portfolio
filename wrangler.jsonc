@@ -20,8 +20,9 @@
   },
   "vars": {
     "QUOTE_TO": "patrickmhourihan@gmail.com",
-    // The sending domain must be verified in Resend. See CLOUDFLARE_DEPLOY.md.
-    "QUOTE_FROM": "Patrick Hourihan Website <quotes@patrickhourihan.com>"
+    // The sending domain must be verified in Resend. Only Patrick sees this
+    // sender, and replies go to the visitor. See CLOUDFLARE_DEPLOY.md.
+    "QUOTE_FROM": "Patrick Hourihan Website <quotes@updates.mycartoonpet.com>"
   },
   "ratelimits": [
     {
