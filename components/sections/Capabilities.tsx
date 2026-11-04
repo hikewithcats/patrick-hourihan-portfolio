@@ -12,10 +12,10 @@ export default function Capabilities() {
       <div className="mx-auto max-w-6xl px-[var(--spacing-gutter)]">
         <SectionHeading
           id="capabilities-heading"
-          index="03"
+          index="02"
           label="Technical Capabilities"
           title="The tools I actually reach for"
-          intro="A working toolkit. Only what I've used to build and ship the projects above."
+          intro="A working toolkit. Only what I've used to build and ship these projects."
         />
 
         <dl className="mt-14 divide-y divide-line border-t border-line">
@@ -26,14 +26,14 @@ export default function Capabilities() {
               className="grid gap-3 py-7 md:grid-cols-[0.5fr_1.5fr] md:gap-10"
             >
               <dt className="flex items-baseline gap-3">
-                <span className="label label-ember">{group.index}</span>
-                <span className="font-display text-xl text-cream">{group.title}</span>
+                <span className="label label-accent">{group.index}</span>
+                <span className="font-display text-xl text-fg">{group.title}</span>
               </dt>
-              <dd className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-cream-dim">
+              <dd className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-fg-dim">
                 {group.items.map((item, i) => (
                   <span key={item} className="inline-flex items-center gap-2">
                     {i > 0 && (
-                      <span className="text-cream-faint" aria-hidden="true">
+                      <span className="text-fg-faint" aria-hidden="true">
                         ·
                       </span>
                     )}

@@ -7,50 +7,49 @@
  */
 export const siteConfig = {
   name: "Patrick Hourihan",
-  shortName: "PH",
-  role: "Software Developer Building AI Products and Internal Tools",
-  location: "Western Massachusetts",
-  /* Approx. coordinates for Belchertown, MA - a field-report detail. */
-  coordinates: "42.2751° N, 72.4009° W",
+  role: "Website Design and Development for Small Businesses",
+  location: "Northampton, MA",
+  serviceArea: "Serving Western Massachusetts & Beyond",
 
   url: "https://patrickhourihan.com",
   // The www host is configured as a redirect to the apex in Cloudflare; see CLOUDFLARE_DEPLOY.md.
 
-  title: "Patrick Hourihan: Software Developer Building AI Products and Internal Tools",
+  title: "Patrick Hourihan | Modern Websites for Small Businesses in Western Massachusetts",
   description:
-    "Patrick Hourihan builds practical web applications, internal analytics, automation, and AI-enabled products using TypeScript, Next.js, SQL, Supabase/Postgres, APIs, Git, and modern AI coding assistants.",
+    "Patrick Hourihan builds modern, affordable websites for small businesses and independent professionals in Northampton and Western Massachusetts. Get a free website quote.",
 
   email: "patrickmhourihan@gmail.com",
+  phone: { display: "(716) 515-5734", e164: "+17165155734" },
 
   links: {
     github: "https://github.com/hikewithcats",
     // Main personal site.
     personalSite: "https://poundkeeper.com",
-    // Secondary personal web property (not a featured project).
-    hikeWithCats: "https://hikewithcats.com",
   },
 
   /**
-   * Résumé download.
-   * The PDF lives at `public/resume/<file>` (rendered from `resume/resume.html`).
-   * The hero and contact buttons link to it directly.
+   * Optional portrait for the About section, e.g. "/images/patrick.jpg" (4:5).
+   * Leave null to render the section without a photo.
    */
+  headshot: null as string | null,
+
+  /** Latest verified resume. Rendered from `resume/resume.html`. */
   resume: {
     path: "/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf",
-    label: "Download Résumé",
   },
 
-  /** Social share image - 1200×630 PNG for broad social-platform support. */
+  /** Social share image - 1200x630 PNG for broad social-platform support. */
   ogImage: "/images/og-image.png",
-} as const;
+};
 
 export type NavItem = { label: string; href: string };
 
+/** Absolute paths so the nav also works from /software/. */
 export const navItems: NavItem[] = [
-  { label: "Projects", href: "#projects" },
-  { label: "Client Work", href: "#client-work" },
-  { label: "Capabilities", href: "#capabilities" },
-  { label: "AI Workflow", href: "#ai-workflow" },
-  { label: "Background", href: "#background" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "How It Works", href: "/#process" },
+  { label: "About", href: "/#about" },
 ];
+
+export const quoteHref = "/#quote";

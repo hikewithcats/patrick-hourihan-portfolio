@@ -21,9 +21,9 @@ const TONE: Record<ProjectStatus, { dot: string; text: string; ring: string }> =
     ring: "ring-moss/30",
   },
   "In development": {
-    dot: "bg-ember",
-    text: "text-ember-soft",
-    ring: "ring-ember/30",
+    dot: "bg-accent",
+    text: "text-accent",
+    ring: "ring-accent/30",
   },
 };
 
@@ -32,7 +32,7 @@ export default function StatusPill({ status }: { status: ProjectStatus }) {
   const live = status === "Live in production" || status === "Public beta";
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full bg-ink-2/70 px-3 py-1 text-xs font-medium ring-1 ${tone.ring} ${tone.text}`}
+      className={`inline-flex items-center gap-2 rounded-full bg-bg-2/70 px-3 py-1 text-xs font-medium ring-1 ${tone.ring} ${tone.text}`}
     >
       <span className="relative flex h-2 w-2">
         {live && (

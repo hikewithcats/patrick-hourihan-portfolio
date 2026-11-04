@@ -1,5 +1,5 @@
 /**
- * Technical capabilities - verified skills only.
+ * Skills and experience - verified facts only.
  *
  * Deliberately excludes anything unverified (e.g. C#, .NET, ASP.NET,
  * SQL Server, Python, AWS, Docker). Presented as editorial groupings,
@@ -117,52 +117,67 @@ export const aiWorkflow: { step: string; title: string; body: string }[] = [
   },
 ];
 
-/** Professional background, prior roles connected to software work. */
-export const backgroundRoles: {
+/** Short skill summary for the homepage About section. */
+export const aboutSkills: { title: string; items: string }[] = [
+  {
+    title: "Websites",
+    items: "HTML, CSS, JavaScript, TypeScript, React, Next.js, Astro, WordPress, responsive design",
+  },
+  {
+    title: "Data and integrations",
+    items: "SQL, Postgres, Supabase, REST APIs, webhooks, Stripe, Resend",
+  },
+  {
+    title: "Delivery",
+    items: "Git, GitHub, Cloudflare, Vercel, testing, debugging, AI-assisted development",
+  },
+  {
+    title: "Working with people",
+    items: "Requirements discovery, consultative sales, account management, plain-English communication",
+  },
+];
+
+/** Professional experience. Facts mirror the resume in resume/. */
+export const experience: {
   role: string;
   org: string;
-  dates?: string;
-  context?: string;
+  dates: string;
+  detail?: string;
 }[] = [
   {
-    role: "Software Projects & AI-Assisted Development",
-    org: "Current focus",
-    context: "The portfolio projects above: defining, building, debugging, and shipping real software, including a live public beta and the internal analytics and automation behind it.",
+    role: "Website and Software Development",
+    org: "Client websites and my own products",
+    dates: "Current",
+    detail:
+      "Defining, building, testing, and launching websites and web applications, working directly with business owners.",
   },
   {
     role: "Energy Consultant",
     org: "Trinity Solar",
     dates: "Nov 2025 to Present",
-    context: "Consultative, client-facing role: assessing needs and explaining a technical product to homeowners.",
+    detail:
+      "Translate technical and financial details of solar projects into plain-English recommendations for homeowners.",
   },
   {
     role: "Territory Manager",
     org: "MicroSurgical Technology",
     dates: "May 2018 to Nov 2020",
-    context: "Ophthalmic medical-device sales supporting surgical facilities across Florida, working with surgeons, hospital administrators, and surgical teams on technical product education and account management.",
+    detail:
+      "Managed sales and service for 150+ ophthalmic surgical facilities across Florida, with 13% year-over-year growth in the first year and 10% in the second.",
   },
   {
     role: "Outside Sales Representative",
     org: "W.B. Mason",
     dates: "Nov 2013 to Apr 2018",
-    context: "B2B outside sales: opened new markets in Buffalo and Miami, managed a large account base, and handled daily prospecting, pricing, contracts, and customer support.",
+    detail:
+      "Opened the Buffalo and Miami markets, generating $1M+ in annual revenue within 12 months, and managed 400+ B2B accounts.",
   },
   {
     role: "Pound Keeper / Animal Care",
     org: "Belchertown Animal Control",
     dates: "Mar 2025 to Present",
   },
-  {
-    role: "Community Work",
-    org: "Dakin Humane Society / Belchertown Animal Relief Committee",
-  },
 ];
 
-export const transferableSkills: string[] = [
-  "Requirements discovery",
-  "Explaining complex systems",
-  "Client and stakeholder communication",
-  "Independent follow-through",
-  "Debugging messy real-world problems",
-  "Turning nontechnical needs into concrete deliverables",
-];
+export const education =
+  "B.S. in Business Administration, University at Buffalo School of Management";

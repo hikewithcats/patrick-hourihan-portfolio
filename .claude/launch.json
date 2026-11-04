@@ -2,15 +2,34 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "portfolio-worker",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "wrangler",
+        "dev",
+        "--port",
+        "8787"
+      ],
+      "port": 8787
+    },
+    {
       "name": "portfolio-static",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "out", "-l", "4399"],
+      "runtimeArgs": [
+        "serve",
+        "out",
+        "-l",
+        "4399"
+      ],
       "port": 4399
     },
     {
       "name": "portfolio-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 3000
     }
   ]

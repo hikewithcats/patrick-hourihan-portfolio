@@ -61,7 +61,7 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
         <div className="mt-3">
           <StatusPill status={project.status} />
         </div>
-        <p className="mt-4 text-lg text-cream-dim">{project.summary}</p>
+        <p className="mt-4 text-lg text-fg-dim">{project.summary}</p>
 
         {/* 4. Stack */}
         <div className="mt-6">
@@ -70,7 +70,7 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
             {project.stack.map((tech) => (
               <li
                 key={tech}
-                className="rounded-md border border-line bg-ink-2/60 px-2.5 py-1 font-mono text-xs text-cream-dim"
+                className="rounded-md border border-line bg-bg-2/60 px-2.5 py-1 font-mono text-xs text-fg-dim"
               >
                 {tech}
               </li>
@@ -83,8 +83,8 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
           <span className="label">What I built</span>
           <ul className="mt-2.5 space-y-2">
             {project.build.map((point, idx) => (
-              <li key={idx} className="flex gap-2.5 text-cream-dim">
-                <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-ember-soft" aria-hidden="true" />
+              <li key={idx} className="flex gap-2.5 text-fg-dim">
+                <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                 {point}
               </li>
             ))}
@@ -99,10 +99,10 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
+                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-fg-faint"
               >
                 Visit live site
-                <ArrowUpRight className="h-3.5 w-3.5 text-cream-faint" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-fg-faint" />
               </a>
             )}
             {project.githubUrl && (
@@ -110,10 +110,10 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
+                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-fg-faint"
               >
                 <GitHubIcon className="h-4 w-4" /> View source
-                <ArrowUpRight className="h-3.5 w-3.5 text-cream-faint" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-fg-faint" />
               </a>
             )}
           </div>
@@ -121,9 +121,9 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
 
         {/* 7. Collapsed case study */}
         <details className="group mt-6 rounded-lg border border-line bg-surface/50">
-          <summary className="flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-cream">
+          <summary className="flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-fg">
             <span className="flex items-center gap-2">
-              <ChevronRight className="case-chevron h-4 w-4 text-ember-soft" />
+              <ChevronRight className="case-chevron h-4 w-4 text-accent" />
               Case study: build notes and ownership
             </span>
           </summary>
@@ -133,8 +133,8 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
               <span className="label label-moss">Under the hood</span>
               <ul className="mt-2.5 space-y-2">
                 {project.implementation.map((point, idx) => (
-                  <li key={idx} className="flex gap-2.5 text-sm text-cream-dim">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-ember-soft" aria-hidden="true" />
+                  <li key={idx} className="flex gap-2.5 text-sm text-fg-dim">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                     {point}
                   </li>
                 ))}
@@ -148,8 +148,8 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
                 <ul className="mt-2.5 space-y-3">
                   {project.internalSystems.map((item) => (
                     <li key={item.title} className="text-sm">
-                      <span className="font-medium text-cream">{item.title}.</span>{" "}
-                      <span className="text-cream-dim">{item.body}</span>
+                      <span className="font-medium text-fg">{item.title}.</span>{" "}
+                      <span className="text-fg-dim">{item.body}</span>
                     </li>
                   ))}
                 </ul>
@@ -161,8 +161,8 @@ function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
                 <span className="label">Current limitations</span>
                 <ul className="mt-2.5 space-y-2">
                   {project.limitations.map((point, idx) => (
-                    <li key={idx} className="flex gap-2.5 text-sm text-cream-dim">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-cream-faint" aria-hidden="true" />
+                    <li key={idx} className="flex gap-2.5 text-sm text-fg-dim">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-fg-faint" aria-hidden="true" />
                       {point}
                     </li>
                   ))}
@@ -197,7 +197,7 @@ function Field({ label, body }: { label: string; body: string }) {
   return (
     <div>
       <dt className="label">{label}</dt>
-      <dd className="mt-1.5 text-cream-dim">{body}</dd>
+      <dd className="mt-1.5 text-fg-dim">{body}</dd>
     </div>
   );
 }

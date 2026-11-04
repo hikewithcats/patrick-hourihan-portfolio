@@ -1,99 +1,72 @@
-# Patrick Hourihan - Portfolio
+# Patrick Hourihan - Portfolio and Website Services
 
-A focused, professional software-development portfolio for **Patrick Hourihan**,
-deployed at **PatrickHourihan.com**.
+**PatrickHourihan.com** is Patrick's personal portfolio and the lead-generation
+page for his small-business website design and development services. It also
+works as a professional portfolio for recruiters.
 
-This is a separate site from [PoundKeeper.com](https://poundkeeper.com), which
-remains Patrick's personal and creative home. This repo is the credible,
-recruiter-facing portfolio for software-development and AI-related roles.
+[PoundKeeper.com](https://poundkeeper.com) remains Patrick's personal and
+creative home.
 
 ---
 
 ## Purpose
 
-Present Patrick's real, verified work - three software projects and selected
-client websites - without overstating seniority or fabricating metrics. Every
-fact, link, and status on the site was verified against the actual project
-repositories, live HTTP checks, and GitHub repo visibility before it shipped.
+Show a local business owner real work on a phone and let them request a free
+quote immediately. Every project, link, and fact on the site is real. No
+invented clients, testimonials, results, prices, or guarantees.
 
 ## Stack
 
-- **Next.js 16** (App Router)
-- **TypeScript**
-- **Tailwind CSS v4** (CSS-first `@theme`, no `tailwind.config.js`)
-- **next/font** (Fraunces · Inter · JetBrains Mono, self-hosted at build)
-- **Static export** - no database, no auth, no server runtime
-- Deployed as **Cloudflare Workers static assets** (see `wrangler.jsonc`)
+- **Next.js 16** (App Router), static export
+- **TypeScript**, **Tailwind CSS v4** (CSS-first `@theme`)
+- **next/font** (Fraunces and Inter, self-hosted at build)
+- **Cloudflare Workers**: static assets plus one route, `POST /api/quote`,
+  which emails quote requests through **Resend**
 
 ## Architecture
 
 ```
 app/
-  layout.tsx        Root layout: fonts, metadata, JSON-LD, skip link, .js flag
-  page.tsx          Single-page composition of all sections
-  globals.css       Design tokens + base styles (the whole visual system)
-  not-found.tsx     404
-  icon.svg          Favicon (App Router metadata file)
-  sitemap.ts        Static sitemap.xml
-  robots.ts         Static robots.txt
+  page.tsx          Home: Hero, Work, Services, Process, About, Quote
+  software/         Technical case studies for recruiters
+  layout.tsx        Fonts, metadata, JSON-LD, skip link
+  globals.css       Design tokens, buttons, form fields
 components/
-  Reveal.tsx        Progressive-enhancement scroll reveal (content-safe)
-  site/             Header (with mobile nav) + Footer
-  sections/         Hero, SoftwareProjects, ClientWork, Capabilities,
-                    AiWorkflow, Background, Contact
-  ui/               SectionHeading, StatusPill, icons
+  sections/         One file per page section; QuoteForm is the client form
+  site/             Header, Footer, StickyQuoteBar (phone only)
+  ui/               DeviceFrames, SectionHeading, StatusPill, icons
 lib/
-  site.ts           Centralized site config (domain, links, résumé path) ← edit here
-  projects.ts       Software + client project data (verified facts only)
-  capabilities.ts   Skill groups, AI workflow steps, background
-public/
-  images/projects/  Branded project images (+ README on the asset workflow)
-  images/og-image.svg
-  resume/           Résumé drop location (+ README)
+  site.ts           Name, location, phone, email, links, resume path, headshot
+  projects.ts       Homepage gallery (showcaseProjects) + software case studies
+  capabilities.ts   Skills and experience
+  quote.ts          Quote form options, shared with the Worker
+worker/
+  index.ts          Serves assets; handles /api/quote
+  index.test.ts     Worker tests (`npm test`)
+resume/             Resume source; the PDF is in public/resume/
 ```
-
-The site is a **single page** with anchored sections (`#projects`,
-`#client-work`, `#capabilities`, `#ai-workflow`, `#background`, `#contact`).
-This keeps it fast, simple, and trivially static-exportable.
-
-## Content structure
-
-- **Hero** - name, headline, supporting + secondary statement, primary actions.
-- **Selected Software Projects** - My Cartoon Pet, IPlayForKeepers (live
-  interactive prototype), Keeping Up With The Robots (live). Each has a problem /
-  built / stack / expandable case study (implementation, AI use, what Patrick
-  owned, current limitations), status, and verified links only.
-- **Selected Client Work** - Cell Beauty Health (live) and Zubin Home Valuation
-  (live). A client card is shown publicly only once its production URL is
-  verified; the data layer supports `hidden` for any not-yet-live engagement.
-- **Technical Capabilities** - editorial groupings of verified skills.
-- **How I Build With AI** - the six-step workflow and the ownership statement.
-- **Professional Background** - prior roles and transferable skills.
-- **Contact** + **Footer** - email, GitHub, PoundKeeper.
 
 ### Editing content
 
-All project and capability content lives in `lib/`. To change the domain,
-contact email, social links, or résumé path, edit **`lib/site.ts`**
-only - metadata, canonical URL, and structured data all read from it.
+- **Contact details, resume path, headshot:** `lib/site.ts`
+- **Gallery:** `showcaseProjects` in `lib/projects.ts`. Set `hidden: true` to
+  remove a project from the site without deleting it.
+- **Experience and skills:** `lib/capabilities.ts`. Keep facts in line with the
+  resume.
 
-Link rules enforced in `lib/projects.ts`:
-- A **live link** appears only when the domain returned HTTP 200.
-- A **GitHub link** appears only when the repository is public.
+Content rules: no em dashes, only verified claims. `liveUrl` must return HTTP
+200, and private repositories are never linked. For My Cartoon Pet, say "public
+beta" and claim no customers or revenue.
 
-## Project-image workflow
+## Project images
 
-Real, optimized screenshot assets live in `public/images/projects/` (1280×800
-JPEGs captured from each production site). To refresh one, see
-[`public/images/projects/README.md`](public/images/projects/README.md).
+Real screenshots of each live site live in `public/images/projects/`. See
+[its README](public/images/projects/README.md).
 
-## Résumé file
+## Resume
 
-The "Download Résumé" button links directly to
-`public/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf`, a one-page
-selectable-text PDF rendered from `resume/resume.html`.
-See [`public/resume/README.md`](public/resume/README.md) for the
-regeneration command.
+**View Resume** and **Download PDF** link to the one-page PDF in
+`public/resume/`. See [its README](public/resume/README.md) to regenerate it.
 
 ## Local setup
 
@@ -108,18 +81,16 @@ npm run dev        # http://localhost:3000
 | --- | --- |
 | `npm run dev` | Local dev server |
 | `npm run build` | Production build → static export into `out/` |
-| `npm run preview` | Serve the built `out/` locally (`npx serve out`) |
+| `npm run preview` | Run the built site and quote route locally (`wrangler dev`) |
+| `npm test` | Quote Worker tests |
+| `npm run deploy` | Build, then `wrangler deploy` |
 | `npm run lint` | ESLint (next/core-web-vitals + next/typescript) |
 | `npm run typecheck` | `tsc --noEmit` |
 
-## Deployment strategy
+## Deployment
 
-Static export served as **Cloudflare Workers static assets**. `next build`
-emits a fully static `out/` directory (no server), and `npx wrangler deploy`
-uploads it to the existing `patrick-hourihan-portfolio` Worker per
-[`wrangler.jsonc`](wrangler.jsonc). See
-**[CLOUDFLARE_DEPLOY.md](CLOUDFLARE_DEPLOY.md)** for the full production
-deploy path, verification, and rollback.
+See **[CLOUDFLARE_DEPLOY.md](CLOUDFLARE_DEPLOY.md)** for the deploy path, the
+one-time quote form setup, verification, and rollback.
 
 ## Accessibility & quality
 
@@ -129,13 +100,3 @@ deploy path, verification, and rollback.
   to be visible** (the reveal effect only engages when JS is present and motion
   is allowed).
 - Descriptive link labels, useful `alt` text, no horizontal overflow at 320px.
-
-## Current limitations
-
-- **My Cartoon Pet** is a live public beta at
-  [mycartoonpet.com](https://mycartoonpet.com) with no source link by design
-  (repository private). Its screenshots show the live public marketing
-  homepage and sign-in screen - authenticated app screens are intentionally
-  not shown.
-- All projects use real, optimized desktop screenshots captured from their
-  production sites.

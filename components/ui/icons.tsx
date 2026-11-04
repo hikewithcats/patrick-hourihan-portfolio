@@ -98,3 +98,83 @@ export function DocIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+function Stroke({ children, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      {children}
+    </svg>
+  );
+}
+
+export function WindowIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Stroke {...props}>
+      <rect x="3" y="4.5" width="18" height="15" rx="2.5" />
+      <path d="M3 9h18M6.5 6.8h.01M9 6.8h.01" />
+    </Stroke>
+  );
+}
+
+export function RefreshIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Stroke {...props}>
+      <path d="M20 11a8 8 0 0 0-14.3-4.3L3.5 9" />
+      <path d="M3.5 4.5V9H8" />
+      <path d="M4 13a8 8 0 0 0 14.3 4.3l2.2-2.3" />
+      <path d="M20.5 19.5V15H16" />
+    </Stroke>
+  );
+}
+
+export function WrenchIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Stroke {...props}>
+      <path d="M14.5 6.5a4.5 4.5 0 0 1 5.8-1.2l-3 3 1.9 1.9 3-3a4.5 4.5 0 0 1-6 5.9l-7.6 7.6a2 2 0 0 1-2.8-2.8l7.6-7.6a4.5 4.5 0 0 1 1.1-3.8Z" />
+    </Stroke>
+  );
+}
+
+export function FlowIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Stroke {...props}>
+      <rect x="3" y="4" width="7" height="6" rx="1.5" />
+      <rect x="14" y="14" width="7" height="6" rx="1.5" />
+      <path d="M10 7h4a3 3 0 0 1 3 3v4M7 10v4a3 3 0 0 0 3 3h4" />
+    </Stroke>
+  );
+}
+
+export function PhoneIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Stroke {...props}>
+      <path d="M21 16.5v2.7a1.8 1.8 0 0 1-2 1.8 17.8 17.8 0 0 1-7.8-2.8 17.5 17.5 0 0 1-5.4-5.4A17.8 17.8 0 0 1 3 4.9 1.8 1.8 0 0 1 4.8 3h2.7a1.8 1.8 0 0 1 1.8 1.5c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9L8.3 10a14.4 14.4 0 0 0 5.7 5.7l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.5 1.7Z" />
+    </Stroke>
+  );
+}
+
+export function CheckIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Stroke {...props}>
+      <path d="m5 12.5 4.5 4.5L19 7.5" />
+    </Stroke>
+  );
+}
+
+export function PinIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Stroke {...props}>
+      <path d="M12 21s7-6.1 7-11.5a7 7 0 1 0-14 0C5 14.9 12 21 12 21Z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </Stroke>
+  );
+}

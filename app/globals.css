@@ -1,39 +1,40 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ *
- *  Patrick Hourihan - portfolio design tokens
- *  Dark editorial "technical field manual" system.
- *  Deep charcoal + dark forest grounds, warm off-white type,
- *  restrained ember-orange and muted-moss accents.
+ *  Patrick Hourihan - design tokens
+ *  Warm paper, deep forest ink, one ember accent. Friendly and credible
+ *  for a business owner, and real site screenshots stand out against it.
  * ------------------------------------------------------------------ */
 @theme {
   /* Grounds */
-  --color-ink: #0d100e;
-  --color-ink-2: #11150f;
-  --color-surface: #161c17;
-  --color-surface-2: #1c241d;
+  --color-bg: #fbf8f1;
+  --color-bg-2: #f3eee2;
+  --color-surface: #ffffff;
+  --color-forest: #1b3328;
+  --color-forest-2: #264436;
 
-  /* Lines / borders */
-  --color-line: #2a342c;
-  --color-line-soft: #20281f;
+  /* Lines */
+  --color-line: #e3dccc;
+  --color-line-soft: #eee8da;
 
   /* Type */
-  --color-cream: #ece6d8;
-  --color-cream-dim: #b8b2a3;
-  --color-cream-faint: #7f7d72;
+  --color-fg: #1b241f;
+  --color-fg-dim: #4b564f;
+  --color-fg-faint: #68716a;
+  --color-on-forest: #f6f2e8;
+  --color-on-forest-dim: #c9d3ca;
 
-  /* Accents - used sparingly */
-  --color-ember: #d96a33;
-  --color-ember-soft: #ec8b56;
-  --color-moss: #8fac7e;
-  --color-moss-dim: #5f7355;
+  /* Accents */
+  --color-accent: #b4471a;
+  --color-accent-strong: #973a13;
+  --color-moss: #3c6a4e;
+  --color-moss-dim: #8aa892;
 
   /* Fonts (wired from next/font in app/layout.tsx) */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
-  --font-mono: var(--font-mono-jb), ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
 
-  /* Editorial measure */
   --spacing-gutter: clamp(1.25rem, 5vw, 4rem);
 }
 
@@ -45,9 +46,10 @@
 }
 
 html {
+  color-scheme: light;
   scroll-behavior: smooth;
   /* Anchor targets clear the sticky header */
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -58,31 +60,14 @@ html {
 }
 
 body {
-  background-color: var(--color-ink);
-  color: var(--color-cream);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
   font-family: var(--font-sans);
   font-size: 1.0625rem;
-  line-height: 1.7;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-}
-
-/* A faint topographic / grid wash on the page ground - field-manual paper. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to bottom, rgba(143, 172, 126, 0.04), transparent 30%),
-    linear-gradient(var(--color-line-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-line-soft) 1px, transparent 1px);
-  background-size: 100% 100%, 4.5rem 4.5rem, 4.5rem 4.5rem;
-  background-position: 0 0, center top, center top;
-  opacity: 0.5;
-  mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, #000 30%, transparent 85%);
+  overflow-x: clip;
 }
 
 h1,
@@ -90,10 +75,10 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 480;
-  line-height: 1.04;
+  font-weight: 500;
+  line-height: 1.08;
   letter-spacing: -0.015em;
-  color: var(--color-cream);
+  color: inherit;
   text-wrap: balance;
 }
 
@@ -107,47 +92,119 @@ a {
 }
 
 /* ------------------------------------------------------------------ *
- *  Field-report typographic helpers
+ *  Small type helpers
  * ------------------------------------------------------------------ */
 .label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-cream-faint);
+  color: var(--color-fg-faint);
 }
 
-.label-ember {
-  color: var(--color-ember-soft);
+.label-accent {
+  color: var(--color-accent);
 }
 
 .label-moss {
   color: var(--color-moss);
 }
 
-.rule {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(
-    to right,
-    var(--color-line),
-    var(--color-line-soft) 60%,
-    transparent
-  );
+.linkline {
+  color: var(--color-accent);
+  text-underline-offset: 0.2em;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  transition: text-decoration-color 0.18s ease;
+}
+.linkline:hover {
+  text-decoration-color: var(--color-accent);
 }
 
 /* ------------------------------------------------------------------ *
- *  Links inside prose
+ *  Buttons. At least 48px tall so they are easy to tap on a phone.
  * ------------------------------------------------------------------ */
-.linkline {
-  color: var(--color-ember-soft);
-  text-underline-offset: 0.2em;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--color-ember-soft) 40%, transparent);
-  transition: text-decoration-color 0.18s ease, color 0.18s ease;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.625rem 1.375rem;
+  border: 1px solid transparent;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
 }
-.linkline:hover {
-  text-decoration-color: var(--color-ember-soft);
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--color-accent-strong);
+}
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+.btn-secondary {
+  background: var(--color-surface);
+  border-color: var(--color-fg);
+  color: var(--color-fg);
+}
+.btn-secondary:hover {
+  background: var(--color-bg-2);
+}
+.btn-quiet {
+  background: transparent;
+  border-color: var(--color-line);
+  color: var(--color-fg);
+}
+.btn-quiet:hover {
+  border-color: var(--color-fg-faint);
+}
+.btn-on-forest {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--color-on-forest) 45%, transparent);
+  color: var(--color-on-forest);
+}
+.btn-on-forest:hover {
+  border-color: var(--color-on-forest);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Form fields. 16px text stops iOS Safari zooming in on focus.
+ * ------------------------------------------------------------------ */
+.field {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  margin-top: 0.375rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #bdb6a6;
+  border-radius: 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-fg);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.field::placeholder {
+  color: var(--color-fg-faint);
+}
+.field[aria-invalid="true"] {
+  border-color: #b3261e;
+}
+select.field {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%234b564f' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  background-size: 1rem;
 }
 
 /* ------------------------------------------------------------------ *
@@ -159,8 +216,8 @@ a {
   top: -4rem;
   z-index: 100;
   padding: 0.6rem 1rem;
-  background: var(--color-ember);
-  color: #160d06;
+  background: var(--color-accent);
+  color: #fff;
   font-weight: 600;
   border-radius: 0.4rem;
   transition: top 0.18s ease;
@@ -169,10 +226,12 @@ a {
   top: 1rem;
 }
 
-:where(a, button, summary, input, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-ember-soft);
-  outline-offset: 3px;
-  border-radius: 2px;
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.on-forest :where(a):focus-visible {
+  outline-color: var(--color-on-forest);
 }
 
 /* ------------------------------------------------------------------ *
@@ -184,9 +243,9 @@ a {
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal] {
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(14px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
   html.js [data-reveal][data-shown] {

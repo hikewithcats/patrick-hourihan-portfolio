@@ -1,12 +1,12 @@
 # Résumé
 
-The "Download Résumé" button links to:
+The **View Resume** and **Download PDF** buttons link to:
 
 ```
 public/resume/Patrick_Hourihan_AI_Junior_Developer_Resume.pdf
 ```
 
-This PDF **is committed** and the hero and contact buttons link to it directly
+This PDF **is committed** and the buttons link to it directly
 (`resume.path` in [`lib/site.ts`](../../lib/site.ts)). It is a one-page,
 selectable-text PDF tailored for a Junior Software Developer (AI-focused)
 application in Westfield, MA.

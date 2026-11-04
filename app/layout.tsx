@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Inter } from "next/font/google";
 import { siteConfig } from "@/lib/site";
-import { visibleSoftwareProjects } from "@/lib/projects";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,12 +16,10 @@ const fraunces = Fraunces({
   axes: ["opsz"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono-jb",
-  weight: ["400", "500"],
-  display: "swap",
-});
+export const viewport: Viewport = {
+  themeColor: "#fbf8f1",
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -36,13 +33,13 @@ export const metadata: Metadata = {
   creator: siteConfig.name,
   keywords: [
     "Patrick Hourihan",
-    "software developer",
-    "AI-enabled products",
+    "small business website design",
+    "website designer Northampton MA",
+    "Western Massachusetts web design",
+    "website redesign",
+    "website maintenance",
+    "web developer",
     "Next.js developer",
-    "TypeScript",
-    "Supabase",
-    "Western Massachusetts developer",
-    "portfolio",
   ],
   alternates: {
     canonical: "/",
@@ -76,50 +73,43 @@ export const metadata: Metadata = {
   },
 };
 
-/** Person + work structured data. Conservative - no fabricated claims. */
+/** Person + service structured data. Conservative: no ratings or fabricated claims. */
 function structuredData() {
+  const address = {
+    "@type": "PostalAddress",
+    addressLocality: "Northampton",
+    addressRegion: "MA",
+    addressCountry: "US",
+  };
+
   const person = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${siteConfig.url}/#patrick`,
     name: siteConfig.name,
     url: siteConfig.url,
-    jobTitle: "Software Developer",
+    jobTitle: "Website Designer and Developer",
     description: siteConfig.description,
     email: `mailto:${siteConfig.email}`,
-    address: {
-      "@type": "PostalAddress",
-      addressRegion: "MA",
-      addressCountry: "US",
-    },
+    telephone: siteConfig.phone.e164,
+    address,
     sameAs: [siteConfig.links.github, siteConfig.links.personalSite],
-    knowsAbout: [
-      "TypeScript",
-      "Next.js",
-      "React",
-      "Supabase",
-      "Postgres",
-      "Stripe integrations",
-      "AI-assisted software development",
-    ],
   };
 
-  const projects = {
+  const service = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Selected software projects by Patrick Hourihan",
-    itemListElement: visibleSoftwareProjects.map((p, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "CreativeWork",
-        name: p.name,
-        description: p.summary,
-        ...(p.liveUrl ? { url: p.liveUrl } : {}),
-      },
-    })),
+    "@type": "ProfessionalService",
+    name: "Patrick Hourihan Website Design and Development",
+    url: siteConfig.url,
+    description: siteConfig.description,
+    email: siteConfig.email,
+    telephone: siteConfig.phone.e164,
+    address,
+    areaServed: "Western Massachusetts",
+    founder: { "@id": `${siteConfig.url}/#patrick` },
   };
 
-  return [person, projects];
+  return [person, service];
 }
 
 export default function RootLayout({
@@ -128,7 +118,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${fraunces.variable}`}
     >
       <head>
         {/*

@@ -1,68 +1,42 @@
 import { siteConfig } from "@/lib/site";
-import { ArrowUpRight, GitHubIcon } from "@/components/ui/icons";
+
+const external = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function Footer() {
+  const links = [
+    { label: siteConfig.phone.display, href: `tel:${siteConfig.phone.e164}` },
+    { label: siteConfig.email, href: `mailto:${siteConfig.email}` },
+    { label: "Resume (PDF)", href: siteConfig.resume.path, ...external },
+    { label: "Software case studies", href: "/software/" },
+    { label: "GitHub", href: siteConfig.links.github, ...external },
+    { label: "PoundKeeper.com (personal site)", href: siteConfig.links.personalSite, ...external },
+  ];
+
   return (
-    <footer className="border-t border-line bg-ink-2/60">
-      <div className="mx-auto max-w-6xl px-[var(--spacing-gutter)] py-12">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="font-display text-xl text-cream">Patrick Hourihan</p>
-            <p className="mt-1 text-sm text-cream-dim">{siteConfig.role}</p>
-            <p className="mt-3 font-mono text-xs text-cream-faint">
-              {siteConfig.location} · {siteConfig.coordinates}
-            </p>
-            <p className="mt-4 max-w-xs text-xs text-cream-faint">
-              <a
-                href={siteConfig.links.hikeWithCats}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cream-dim underline decoration-line underline-offset-2 transition-colors hover:text-cream"
-              >
-                Hike With Cats
-              </a>
-              : adventure-cat media and merchandise site built and maintained on
-              WordPress/SiteGround.
-            </p>
-          </div>
-
-          <nav aria-label="Footer" className="flex flex-col gap-3 sm:items-end">
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-cream-dim transition-colors hover:text-cream"
-            >
-              <GitHubIcon className="h-4 w-4" /> github.com/hikewithcats
-              <ArrowUpRight className="h-3 w-3 text-cream-faint" />
-            </a>
-            <a
-              href={siteConfig.links.personalSite}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-cream-dim transition-colors hover:text-cream"
-            >
-              PoundKeeper.com (personal &amp; creative)
-              <ArrowUpRight className="h-3 w-3 text-cream-faint" />
-            </a>
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="text-sm text-cream-dim transition-colors hover:text-cream"
-            >
-              {siteConfig.email}
-            </a>
-          </nav>
-        </div>
-
-        <div className="rule mt-10" />
-        <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-xs text-cream-faint">
-            © {new Date().getFullYear()} Patrick Hourihan. End of field report.
+    <footer className="bg-bg">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-[var(--spacing-gutter)] py-12 sm:flex-row sm:justify-between">
+        <div>
+          <p className="font-display text-xl">{siteConfig.name}</p>
+          <p className="mt-1 text-sm text-fg-dim">{siteConfig.role}</p>
+          <p className="mt-1 text-sm text-fg-dim">
+            {siteConfig.location} | {siteConfig.serviceArea}
           </p>
-          <p className="font-mono text-xs text-cream-faint">
-            Built with Next.js · Static export · Cloudflare Workers
+          <p className="mt-5 text-xs text-fg-faint">
+            © {new Date().getFullYear()} Patrick Hourihan
           </p>
         </div>
+
+        <nav aria-label="Footer">
+          <ul className="flex flex-col gap-1 sm:items-end">
+            {links.map(({ label, ...props }) => (
+              <li key={label}>
+                <a {...props} className="inline-block py-2.5 text-[0.9375rem] leading-6 sm:py-1.5 text-fg-dim hover:text-fg">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </footer>
   );

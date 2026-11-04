@@ -2,8 +2,8 @@ import Reveal from "@/components/Reveal";
 import type { ReactNode } from "react";
 
 /**
- * Editorial section header: a small mono "field-report" label with an index,
- * a large display heading, and optional supporting copy.
+ * Section header: a small label, a large display heading, and optional
+ * supporting copy. `index` is optional and used on the /software/ page.
  */
 export default function SectionHeading({
   index,
@@ -12,7 +12,7 @@ export default function SectionHeading({
   intro,
   id,
 }: {
-  index: string;
+  index?: string;
   label: string;
   title: ReactNode;
   intro?: ReactNode;
@@ -21,15 +21,19 @@ export default function SectionHeading({
   return (
     <div className="max-w-3xl">
       <Reveal className="flex items-center gap-3">
-        <span className="label label-ember">{index}</span>
-        <span className="h-px w-8 bg-line" aria-hidden="true" />
-        <span className="label">{label}</span>
+        {index && (
+          <>
+            <span className="label label-accent">{index}</span>
+            <span className="h-px w-8 bg-line" aria-hidden="true" />
+          </>
+        )}
+        <span className={index ? "label" : "label label-accent"}>{label}</span>
       </Reveal>
-      <Reveal as="h2" id={id} delay={60} className="mt-5 text-4xl sm:text-5xl">
+      <Reveal as="h2" id={id} delay={60} className="mt-4 text-[2.15rem] sm:text-5xl">
         {title}
       </Reveal>
       {intro && (
-        <Reveal as="p" delay={120} className="mt-5 text-lg text-cream-dim">
+        <Reveal as="p" delay={120} className="mt-4 text-lg text-fg-dim">
           {intro}
         </Reveal>
       )}

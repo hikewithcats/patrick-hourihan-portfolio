@@ -1,19 +1,33 @@
 {
-  // Deploy this site to Cloudflare as a STATIC site (Workers Static Assets).
+  // patrickhourihan.com: a static Next.js export plus one small Worker route.
   //
-  // This is NOT an OpenNext / server build. `npm run build` runs `next build`
-  // with `output: "export"` and emits a fully static site into `out/`. The
-  // presence of this file (with an `assets` directory and no `main` worker
-  // script) tells `wrangler deploy` to upload `out/` as static assets instead
-  // of trying to wrap the app with the Next.js OpenNext adapter.
+  // `npm run build` emits the site into `out/`. `npx wrangler deploy` uploads it
+  // as static assets alongside worker/index.ts, which only runs for /api/* (the
+  // quote form). This is NOT an OpenNext / server build.
   //
   // Build command:  npm run build
-  // Deploy command: npx wrangler deploy   (uploads ./out below)
+  // Deploy command: npx wrangler deploy
+  // Secret:         npx wrangler secret put RESEND_API_KEY
   "name": "patrick-hourihan-portfolio",
   "compatibility_date": "2026-06-26",
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     // Serve the prebuilt 404.html for unknown paths.
     "not_found_handling": "404-page"
-  }
+  },
+  "vars": {
+    "QUOTE_TO": "patrickmhourihan@gmail.com",
+    // The sending domain must be verified in Resend. See CLOUDFLARE_DEPLOY.md.
+    "QUOTE_FROM": "Patrick Hourihan Website <quotes@patrickhourihan.com>"
+  },
+  "ratelimits": [
+    {
+      "name": "QUOTE_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 5, "period": 60 }
+    }
+  ]
 }

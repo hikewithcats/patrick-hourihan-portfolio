@@ -2,13 +2,15 @@
   "name": "patrick-hourihan-portfolio",
   "version": "0.1.0",
   "private": true,
-  "description": "Professional software-development portfolio for Patrick Hourihan (PatrickHourihan.com).",
+  "description": "Patrick Hourihan's portfolio and small-business website services (PatrickHourihan.com).",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "preview": "npx serve out",
+    "preview": "npx wrangler dev",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --test worker/*.test.ts",
+    "deploy": "npm run build && npx wrangler deploy"
   },
   "dependencies": {
     "next": "16.1.6",

@@ -10,15 +10,14 @@ export default function NotFound() {
       id="main"
       className="mx-auto flex min-h-[70vh] max-w-2xl flex-col items-start justify-center px-[var(--spacing-gutter)]"
     >
-      <span className="label label-ember">Error 404 · off the trail</span>
-      <h1 className="mt-4 text-5xl">This page isn&apos;t on the map.</h1>
-      <p className="mt-4 text-cream-dim">
-        The coordinates you followed don&apos;t lead anywhere. Let&apos;s get you
-        back to solid ground.
+      <span className="label label-accent">Page not found</span>
+      <h1 className="mt-4 text-5xl">Sorry, that page doesn&apos;t exist.</h1>
+      <p className="mt-4 text-fg-dim">
+        The link may be out of date. Everything you need is on the home page.
       </p>
       <Link
         href="/"
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-ember px-5 py-2.5 text-sm font-semibold text-[#180d05]"
+        className="btn btn-primary mt-8"
       >
         Return home
       </Link>

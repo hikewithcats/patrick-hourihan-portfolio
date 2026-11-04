@@ -1,12 +1,12 @@
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
+import StickyQuoteBar from "@/components/site/StickyQuoteBar";
 import Hero from "@/components/sections/Hero";
-import SoftwareProjects from "@/components/sections/SoftwareProjects";
-import ClientWork from "@/components/sections/ClientWork";
-import Capabilities from "@/components/sections/Capabilities";
-import AiWorkflow from "@/components/sections/AiWorkflow";
-import Background from "@/components/sections/Background";
-import Contact from "@/components/sections/Contact";
+import Work from "@/components/sections/Work";
+import Services from "@/components/sections/Services";
+import Process from "@/components/sections/Process";
+import About from "@/components/sections/About";
+import Quote from "@/components/sections/Quote";
 
 export default function Home() {
   return (
@@ -14,14 +14,14 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
-        <SoftwareProjects />
-        <ClientWork />
-        <Capabilities />
-        <AiWorkflow />
-        <Background />
-        <Contact />
+        <Work />
+        <Services />
+        <Process />
+        <About />
+        <Quote />
       </main>
       <Footer />
+      <StickyQuoteBar />
     </>
   );
 }

@@ -1,5 +1,5 @@
 /**
- * Project + client-work data.
+ * Project data: software case studies for /software/ and the homepage gallery.
  *
  * Every fact here was verified against the actual repositories, live HTTP
  * checks, and GitHub repo visibility on 2026-06-23, and re-verified for the
@@ -192,73 +192,149 @@ export const softwareProjects: Project[] = [
 ];
 
 /* ---------------------------------------------------------------- *
- *  Selected client work
+ *  Websites shown in the homepage gallery (ordered)
+ *
+ *  Real small-business work comes first. `kind` keeps client work clearly
+ *  separate from Patrick's own businesses and products. Set `hidden: true`
+ *  to remove an entry from the site without deleting it.
+ *  Screenshots captured from each live site on 2026-11-04.
  * ---------------------------------------------------------------- */
-export interface ClientProject {
+export interface ShowcaseProject {
   id: string;
   name: string;
+  kind: "client" | "own";
+  /** Badge text, e.g. "Client website". */
+  label: string;
+  /** What the business is, in a few words. */
+  business: string;
   summary: string;
-  /** Patrick's role - web development scope only. */
-  role: string[];
-  /** Explicit boundary on what Patrick did NOT provide. */
-  boundary?: string;
-  stack: string[];
-  status: ProjectStatus;
-  liveUrl?: string;
+  /** Patrick's contribution, in plain language. */
+  contribution: string[];
+  /** Honest boundary on what Patrick did not provide. */
+  note?: string;
+  liveUrl: string;
+  /** Domain shown in the browser frame. */
+  domain: string;
   image: string;
   imageAlt: string;
+  mobileImage: string;
+  mobileImageAlt: string;
   hidden?: boolean;
-  note?: string;
 }
 
-export const clientProjects: ClientProject[] = [
-  {
-    id: "cell-beauty-health",
-    name: "Cell Beauty Health",
-    summary:
-      "A responsive marketing website for a science-backed peptide-therapy wellness brand.",
-    role: [
-      "Requirements gathering and information architecture",
-      "Responsive website implementation (Next.js, Tailwind CSS)",
-      "Approved-copy integration",
-      "Consultation form and platform integration",
-      "QA",
-      "Deployment coordination",
-    ],
-    boundary:
-      "My role was limited to requirements, site structure, responsive implementation, QA, and deployment coordination. Medical and regulatory content came from the client.",
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Embedded form (Tally)"],
-    status: "Live in production",
-    liveUrl: "https://www.cellbeautyhealth.com",
-    image: "/images/projects/cell-beauty-health.jpg",
-    imageAlt:
-      "Screenshot of the live Cell Beauty Health website: an elegant dark hero with the Cell Beauty Health logo over a cellular background and a “Book Your Free Consultation” call to action.",
-  },
+export const showcaseProjects: ShowcaseProject[] = [
   {
     id: "zubin-home-valuation",
     name: "Zubin Home Valuation",
+    kind: "client",
+    label: "Client website",
+    business: "Residential appraiser, Buffalo and Western New York",
     summary:
-      "A responsive marketing website for a residential appraisal and home-valuation business serving Buffalo and Western New York.",
-    role: [
-      "Requirements gathering and information architecture",
-      "Responsive website development",
-      "Implementation of approved copy",
-      "QA",
-      "Deployment coordination",
+      "A local appraiser needed a site that earns trust quickly and makes it easy for homeowners, attorneys, and lenders to get in touch.",
+    contribution: [
+      "Worked out the requirements and site structure with the owner",
+      "Built mobile-friendly pages for services, service area, FAQ, and contact",
+      "Put one-tap calling and an appraisal request front and center",
+      "Handled testing and launch coordination",
     ],
-    boundary:
-      "My role was limited to site structure, responsive implementation, QA, and deployment coordination. Appraisal credentials, service details, and business claims came from the client.",
-    stack: ["Astro", "Static site"],
-    status: "Live in production",
+    note: "Credentials, service details, and business claims came from the client.",
     liveUrl: "https://zubinhomevaluation.com",
-    // No source link - client repository is not public, and source is not advertised.
+    domain: "zubinhomevaluation.com",
     image: "/images/projects/zubin-home-valuation.jpg",
     imageAlt:
-      "Screenshot of the live Zubin Home Valuation website: a professional hero reading “Residential Appraisals and Home Valuation Services in Buffalo & Western New York” with call-to-action buttons.",
-    // Verified live (HTTP 200, real content) on 2026-06-25, so shown publicly.
+      "Zubin Home Valuation website on a desktop: a navy hero reading Residential Appraisals and Home Valuation Services in Buffalo and Western New York, with buttons to request an appraisal or call.",
+    mobileImage: "/images/projects/zubin-home-valuation-mobile.jpg",
+    mobileImageAlt:
+      "Zubin Home Valuation website on a phone, with large buttons to request an appraisal or call.",
+  },
+  {
+    id: "cell-beauty-health",
+    name: "Cell Beauty Health",
+    kind: "client",
+    label: "Client website",
+    business: "Peptide therapy and wellness, virtual consultations",
+    summary:
+      "A wellness brand needed a polished, premium site that explains a complex service clearly and leads visitors to book a free consultation.",
+    contribution: [
+      "Turned the owner's goals and approved copy into a clear site structure",
+      "Built the responsive site and connected the consultation form",
+      "Handled testing and launch coordination",
+      "Added new service sections and approved copy updates after launch",
+    ],
+    note: "Medical and regulatory content came from the client.",
+    liveUrl: "https://www.cellbeautyhealth.com",
+    domain: "cellbeautyhealth.com",
+    image: "/images/projects/cell-beauty-health.jpg",
+    imageAlt:
+      "Cell Beauty Health website on a desktop: the logo over a warm cellular background with a Book Your Free Consultation button.",
+    mobileImage: "/images/projects/cell-beauty-health-mobile.jpg",
+    mobileImageAlt: "Cell Beauty Health website on a phone.",
+  },
+  {
+    id: "keeping-up-with-the-robots",
+    name: "Keeping Up With The Robots",
+    kind: "own",
+    label: "My own project",
+    business: "Local newsletter and community, Western Massachusetts",
+    summary:
+      "A practical newsletter and community for Western Mass small business owners and creators learning to use AI.",
+    contribution: [
+      "Wrote the positioning and copy",
+      "Designed and built the site",
+      "Connected newsletter sign-up and the contact form",
+    ],
+    liveUrl: "https://keepingupwiththerobots.com",
+    domain: "keepingupwiththerobots.com",
+    image: "/images/projects/keeping-up-with-the-robots.jpg",
+    imageAlt:
+      "Keeping Up With The Robots website: a dark hero reading AI is moving fast, Western Mass is keeping up, with a newsletter sign-up and a map of local towns.",
+    mobileImage: "/images/projects/keeping-up-with-the-robots-mobile.jpg",
+    mobileImageAlt: "Keeping Up With The Robots website on a phone.",
+  },
+  {
+    id: "hike-with-cats",
+    name: "Hike With Cats",
+    kind: "own",
+    label: "My own brand",
+    business: "Adventure-cat media and online shop",
+    summary:
+      "My own brand built around slowing down outdoors, with an online shop for branded apparel and stickers.",
+    contribution: [
+      "Created the brand",
+      "Built and maintain the site on WordPress",
+      "Set up the shop and product catalog",
+    ],
+    liveUrl: "https://hikewithcats.com",
+    domain: "hikewithcats.com",
+    image: "/images/projects/hike-with-cats.jpg",
+    imageAlt:
+      "Hike With Cats online shop: a meditating-cat logo above a grid of branded hoodies, stickers, and shirts with prices.",
+    mobileImage: "/images/projects/hike-with-cats-mobile.jpg",
+    mobileImageAlt: "Hike With Cats online shop on a phone.",
+  },
+  {
+    id: "my-cartoon-pet",
+    name: "My Cartoon Pet",
+    kind: "own",
+    label: "My own product, public beta",
+    business: "Custom pet artwork app",
+    summary:
+      "Pet owners upload a photo, get a cartoon of their pet, and preview it on products. A full web application, not just a website.",
+    contribution: [
+      "Designed, built, and launched the public beta",
+      "Built accounts, a private gallery, and subscription billing",
+      "Connected AI image generation",
+    ],
+    liveUrl: "https://mycartoonpet.com",
+    domain: "mycartoonpet.com",
+    image: "/images/projects/my-cartoon-pet.jpg",
+    imageAlt:
+      "My Cartoon Pet website: a hero reading Your pet, as a cartoon character, with a real pet photo shown beside its finished cartoon.",
+    mobileImage: "/images/projects/my-cartoon-pet-mobile.jpg",
+    mobileImageAlt: "My Cartoon Pet website on a phone.",
   },
 ];
 
 /** Only the projects that should render publicly. */
 export const visibleSoftwareProjects = softwareProjects.filter((p) => !p.hidden);
-export const visibleClientProjects = clientProjects.filter((p) => !p.hidden);
+export const visibleShowcase = showcaseProjects.filter((p) => !p.hidden);

@@ -1,153 +1,67 @@
-import Reveal from "@/components/Reveal";
-import { siteConfig } from "@/lib/site";
-import { ArrowDown, ArrowUpRight, DocIcon, GitHubIcon, MailIcon } from "@/components/ui/icons";
-
-const fieldNotes: { k: string; v: string }[] = [
-  { k: "stack", v: "TypeScript · Next.js · SQL" },
-  { k: "focus", v: "AI products · internal tools" },
-  { k: "status", v: "Building & open to roles" },
-  { k: "region", v: "Western Massachusetts" },
-];
+import Link from "next/link";
+import { BrowserFrame, PhoneFrame } from "@/components/ui/DeviceFrames";
+import { PinIcon } from "@/components/ui/icons";
+import { showcaseProjects } from "@/lib/projects";
+import { quoteHref, siteConfig } from "@/lib/site";
 
 export default function Hero() {
+  const browser = showcaseProjects.find((p) => p.id === "cell-beauty-health");
+  const phone = showcaseProjects.find((p) => p.id === "zubin-home-valuation");
+
   return (
-    <section
-      aria-labelledby="hero-name"
-      className="relative overflow-hidden border-b border-line"
-    >
-      <div className="mx-auto grid max-w-6xl gap-12 px-[var(--spacing-gutter)] pb-20 pt-16 sm:pt-24 lg:grid-cols-[1.55fr_1fr] lg:items-center lg:gap-16 lg:pb-28">
-        {/* Left - the statement */}
+    <section aria-labelledby="hero-heading" className="overflow-hidden border-b border-line">
+      <div className="mx-auto grid max-w-6xl gap-10 px-[var(--spacing-gutter)] pb-12 pt-7 sm:pt-14 lg:grid-cols-[1.08fr_1fr] lg:items-center lg:gap-14 lg:pb-20 lg:pt-16">
         <div>
-          <Reveal className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <span className="label label-ember">{siteConfig.role.toUpperCase()}</span>
-            <span className="hidden h-px w-8 bg-line sm:block" aria-hidden="true" />
-            <span className="label">{siteConfig.coordinates}</span>
-          </Reveal>
+          <h1 id="hero-heading">
+            <span className="block font-display text-[1.375rem] font-medium leading-tight tracking-normal text-accent sm:text-2xl">
+              {siteConfig.name}
+            </span>
+            <span className="mt-2.5 block text-[2.375rem] leading-[1.06] sm:text-6xl">
+              Modern Websites for Small Businesses. Built to Help You Grow.
+            </span>
+          </h1>
 
-          <Reveal
-            as="h1"
-            id="hero-name"
-            delay={60}
-            className="mt-6 text-[clamp(2.9rem,8vw,5.5rem)] leading-[0.98]"
-          >
-            Patrick Hourihan
-          </Reveal>
+          <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-fg-dim sm:mt-6 sm:text-xl">
+            I help local businesses and independent professionals build modern,
+            affordable websites that make a great first impression and turn
+            visitors into customers.
+          </p>
 
-          <Reveal
-            as="p"
-            delay={120}
-            className="mt-5 max-w-2xl font-display text-2xl text-cream-dim sm:text-3xl"
-          >
-            Software developer building{" "}
-            <span className="text-cream">AI products and internal tools</span>.
-            Practical software, real websites, and a live public beta.
-          </Reveal>
-
-          <Reveal as="p" delay={180} className="mt-6 max-w-2xl text-cream-dim">
-            Based in Western Massachusetts, I build practical web applications,
-            internal analytics, automation, and AI-enabled products using
-            TypeScript, Next.js, SQL, Supabase/Postgres, APIs, Git, and modern
-            AI coding assistants.
-          </Reveal>
-
-          <Reveal
-            as="p"
-            delay={220}
-            className="mt-4 max-w-2xl border-l-2 border-moss-dim/60 pl-4 text-sm text-cream-dim"
-          >
-            More than seven years of client-facing sales and account-management
-            experience brought to software development, alongside hands-on work
-            defining, building, debugging, and deploying real products.
-          </Reveal>
-
-          {/* Primary actions */}
-          <Reveal
-            delay={280}
-            className="mt-9 flex flex-wrap items-center gap-3"
-          >
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-full bg-ember px-5 py-2.5 text-sm font-semibold text-[#180d05] transition-transform hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
-            >
-              View Projects <ArrowDown className="h-4 w-4" />
+          <div id="hero-actions" className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+            <a href={quoteHref} className="btn btn-primary">
+              Get a Free Website Quote
             </a>
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
-            >
-              <GitHubIcon className="h-4 w-4" /> GitHub
-              <ArrowUpRight className="h-3.5 w-3.5 text-cream-faint" />
-            </a>
+            <Link href="/#work" className="btn btn-secondary">
+              View My Work
+            </Link>
+          </div>
 
-            <a
-              href={siteConfig.resume.path}
-              download
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
-            >
-              <DocIcon className="h-4 w-4" /> {siteConfig.resume.label}
-            </a>
-
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:border-cream-faint"
-            >
-              <MailIcon className="h-4 w-4" /> Contact Patrick
-            </a>
-          </Reveal>
+          <p className="mt-5 flex items-start gap-1.5 text-sm text-fg-dim">
+            <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            <span>
+              {siteConfig.location} <span className="text-fg-faint" aria-hidden="true">|</span>{" "}
+              {siteConfig.serviceArea}
+            </span>
+          </p>
         </div>
 
-        {/* Right - field-notes panel */}
-        <Reveal
-          delay={200}
-          className="relative hidden lg:block"
-          aria-hidden="true"
-        >
-          <div className="relative rounded-xl border border-line bg-surface/60 p-6 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.9)]">
-            {/* corner ticks */}
-            <Corner className="left-2 top-2" />
-            <Corner className="right-2 top-2 rotate-90" />
-            <Corner className="bottom-2 left-2 -rotate-90" />
-            <Corner className="bottom-2 right-2 rotate-180" />
-
-            <div className="flex items-center justify-between">
-              <span className="label">Field notes</span>
-              <span className="label label-moss">REV 2026.06</span>
-            </div>
-            <div className="rule mt-3" />
-            <dl className="mt-4 space-y-3">
-              {fieldNotes.map((row) => (
-                <div key={row.k} className="grid grid-cols-[4.5rem_1fr] items-baseline gap-3">
-                  <dt className="font-mono text-xs uppercase tracking-wider text-cream-faint">
-                    {row.k}
-                  </dt>
-                  <dd className="font-mono text-sm text-cream">{row.v}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="rule mt-5" />
-            <p className="mt-4 font-mono text-xs leading-relaxed text-cream-faint">
-              <span className="text-moss">$</span> whoami
-              <br />
-              <span className="text-cream-dim">
-                &gt; ai-assisted software developer
-              </span>
-              <br />
-              <span className="text-cream-dim">&gt; define · spec · build · review · ship</span>
-            </p>
+        {browser && phone && (
+          <div className="relative pb-8 pl-[12%] sm:pb-10">
+            <BrowserFrame
+              src={browser.image}
+              alt={browser.imageAlt}
+              domain={browser.domain}
+              eager
+            />
+            <PhoneFrame
+              src={phone.mobileImage}
+              alt={phone.mobileImageAlt}
+              eager
+              className="absolute bottom-0 left-0 w-[30%]"
+            />
           </div>
-        </Reveal>
+        )}
       </div>
     </section>
-  );
-}
-
-function Corner({ className }: { className?: string }) {
-  return (
-    <span
-      className={`pointer-events-none absolute h-3 w-3 border-l border-t border-ember-soft/50 ${className}`}
-      aria-hidden="true"
-    />
   );
 }

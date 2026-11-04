@@ -1,30 +1,26 @@
 # Project images
 
-Branded, on-brand "field-report" cover images for each project, used by the
-project and client-work cards.
+Real screenshots of each live site, used by the homepage gallery and the
+/software/ case studies.
 
 ## Current assets
 
-| File | Project | Type |
-| --- | --- | --- |
-| `my-cartoon-pet.jpg` | My Cartoon Pet | Real screenshot - marketing homepage (1280×800) |
-| `my-cartoon-pet-signin.jpg` | My Cartoon Pet | Real screenshot - sign-in (case-study detail, 1280×800) |
-| `iplayforkeepers.jpg` | IPlayForKeepers | Real screenshot (1280×800) |
-| `keeping-up-with-the-robots.jpg` | Keeping Up With The Robots | Real screenshot (1280×800) |
-| `cell-beauty-health.jpg` | Cell Beauty Health | Real screenshot (1280×800) |
-| `zubin-home-valuation.jpg` | Zubin Home Valuation | Real screenshot (1280×800) |
+Captured from the live sites on 2026-11-04. `<id>.jpg` is desktop (1440x900,
+scaled to 1280 wide). `<id>-mobile.jpg` is phone (390x844 at 2x, scaled to 1000
+tall) and appears only in the homepage gallery.
 
-Every project uses real desktop screenshots, saved as optimized JPEGs, captured
-from each production site. My Cartoon Pet's were captured from the live public
-beta at mycartoonpet.com (marketing homepage + sign-in only - the
-authenticated app screens are intentionally not shown).
+- `zubin-home-valuation`, `cell-beauty-health`, `keeping-up-with-the-robots`,
+  `hike-with-cats`, `my-cartoon-pet`: desktop and mobile
+- `iplayforkeepers`: desktop, for /software/
+- `my-cartoon-pet-signin.jpg`: public sign-in screen, for the /software/ case
+  study. Authenticated app screens are intentionally not shown.
 
 ## Refreshing a screenshot
 
-1. Capture a clean desktop screenshot (1440×900) of the production site.
+1. Capture a clean screenshot of the production site at the sizes above.
 2. Downscale to 1280 px wide and save as an optimized JPEG (target < 250 KB),
    e.g. `sips -Z 1280 in.png --setProperty format jpeg --setProperty formatOptions 82 --out out.jpg`.
-3. Save it here, then confirm the `image` (and `imageAlt`) fields in
+3. Save it here, then confirm the image and alt fields in
    [`lib/projects.ts`](../../../lib/projects.ts) point at it.
 
 Do **not** hotlink screenshots from external sites - always store a local,
